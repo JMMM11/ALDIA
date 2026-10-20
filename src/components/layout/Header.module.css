@@ -1,31 +1,21 @@
+/* No es fijo: queda en la parte superior de la página y se va con el scroll */
 .header {
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto;
   z-index: var(--z-header);
   height: var(--alto-header);
-  transition:
-    background-color var(--dur) var(--ease-out),
-    border-color var(--dur) var(--ease-out),
-    color var(--dur) var(--ease-out);
-  border-bottom: 1px solid transparent;
+  color: var(--texto);
+  border-bottom: 1px solid var(--borde);
+  --texto-nav: var(--texto);
+  --indicador: var(--superficie-2);
 }
 
 /* Sobre la foto del inicio: transparente con texto blanco */
 .sobreFoto {
   color: #fff;
+  border-bottom-color: transparent;
   --texto-nav: #fff;
   --indicador: rgb(255 255 255 / 0.16);
-}
-
-/* Al bajar: vidrio esmerilado sobre el contenido */
-.solido {
-  color: var(--texto);
-  --texto-nav: var(--texto);
-  --indicador: var(--superficie-2);
-  background: color-mix(in srgb, var(--bg) 78%, transparent);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border-bottom-color: var(--borde);
 }
 
 .fila {
@@ -55,9 +45,8 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   min-height: 44px;
-  padding: 0 0.875rem;
+  padding: 0 0.95rem;
   border-radius: var(--radio-control);
   color: var(--texto-nav);
   font-size: 0.9375rem;
@@ -75,38 +64,6 @@
   background: var(--indicador);
 }
 
-.icono {
-  display: grid;
-  transform-origin: 50% 60%;
-}
-
-.icono svg {
-  width: 20px;
-  height: 20px;
-}
-
-.acciones {
-  display: flex;
-  align-items: center;
-  gap: var(--s-2);
-}
-
-.botonIcono {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
-  border-radius: var(--radio-control);
-  background: transparent;
-  color: inherit;
-}
-
-.botonIcono svg {
-  width: 20px;
-  height: 20px;
-}
-
 .reportar {
   display: none;
 }
@@ -122,14 +79,5 @@
   }
   .reportar {
     display: inline-flex;
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1180px) {
-  .enlace {
-    padding: 0 0.625rem;
-  }
-  .icono {
-    display: none;
   }
 }

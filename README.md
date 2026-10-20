@@ -46,12 +46,12 @@ En la interfaz, cada nivel lleva siempre ícono y texto, nunca solo color.
 ## Tecnologías
 
 - **React 19 + Vite 8:** la app, dividida en páginas que se cargan por separado.
-- **wouter:** enrutador liviano (~2 KB).
+- **wouter:** enrutador liviano (~2 KB), con rutas después del `#` (`#/alertas`) para funcionar en cualquier servidor estático.
 - **Motion** (motion.dev): animaciones.
 - **Supabase:** Postgres, Anonymous Sign-ins, RLS y Realtime.
 - **Íconos:** Phosphor.
 - **Fuentes:** Plus Jakarta Sans (títulos) e Inter (texto), solo el subconjunto latino.
-- **Estilos:** CSS Modules con tokens de diseño en variables CSS, tema claro y oscuro.
+- **Estilos:** CSS Modules con tokens de diseño en variables CSS, en tema claro.
 
 ### Animaciones
 
@@ -61,7 +61,7 @@ Todas respetan `prefers-reduced-motion`.
 | --- | --- |
 | Fundido cruzado | Carruseles y cambio de filtros de alertas |
 | Elemento compartido | El título de una alerta "viaja" de la tarjeta al detalle (`layoutId`) |
-| Magnificación tipo dock | Íconos del menú en escritorio |
+| Indicador que se desliza | Página activa en el menú y en la barra inferior del teléfono |
 | Desenfoque del fondo | Al abrir el formulario de reporte o un detalle |
 | Aparición escalonada | Tarjetas al hacer scroll |
 | Contadores animados | Cifras de la portada |
@@ -71,29 +71,33 @@ Todas respetan `prefers-reduced-motion`.
 ## Estructura del proyecto
 
 ```
-index.html                  Punto de entrada (incluye la vista previa del hero)
-public/                     Foto principal, fuentes, favicon, robots.txt
+index.html, assets/, fotos/,   La web compilada (la genera `npm run build`).
+fuentes/, favicon.svg          Es lo que abre Go Live y lo que publica GitHub Pages.
 src/
-  main.jsx                  Arranque diferido de la app
-  arranque.jsx              Router, MotionConfig y proveedor de datos
-  App.jsx                   Rutas
-  styles/                   tokens.css (colores, tipografía, modo oscuro) y base.css
-  data/                     Contenido separado del diseño: catálogos, semáforo, textos, fotos
-  lib/                      Cliente de Supabase, validación (con pruebas), formato de horas
-  services/                 Acceso a datos: alertas.js y moderacion.js
-  context/                  Estado global (datos y apertura del formulario)
-  hooks/                    useTema, useAhora
+  index.html                  Página fuente (incluye la vista previa del hero)
+  main.jsx                    Arranque diferido de la app
+  arranque.jsx                Router, MotionConfig y proveedor de datos
+  App.jsx                     Rutas
+  styles/                     tokens.css (colores, tipografía) y base.css
+  data/                       Contenido separado del diseño: catálogos, semáforo, textos, fotos
+  lib/                        Cliente de Supabase, validación (con pruebas), formato de horas
+  services/                   Acceso a datos: alertas.js y moderacion.js
+  context/                    Estado global (datos y apertura del formulario)
+  hooks/                      useAhora
   components/
-    layout/                 Header, NavMovil, Footer, Layout
-    inicio/                 Hero, TarjetaFlotante, IdeaClave, SemaforoPasos...
-    alertas/                AlertaCard, DetalleAlerta, Filtros, Formulario, VotoBotones
-    ui/                     Carrusel, Modal, EstadoBadge, Contador, Foto...
-  pages/                    Una página por sección
+    layout/                   Header, NavMovil, Footer, Layout
+    inicio/                   Hero, TarjetaFlotante, IdeaClave, SemaforoPasos...
+    alertas/                  AlertaCard, DetalleAlerta, Filtros, Formulario, VotoBotones
+    ui/                       Carrusel, Modal, EstadoBadge, Contador, Foto...
+  pages/                      Una página por sección
+public/                       Archivos que se copian tal cual al compilar
 supabase/
-  migrations/               Tablas, vista del semáforo, RLS y funciones
-  pruebas/                  Pruebas de las migraciones en Postgres (PGlite)
-docs/capturas/              Capturas del README
+  migrations/                 Tablas, vista del semáforo, RLS y funciones
+  pruebas/                    Pruebas de las migraciones en Postgres (PGlite)
+docs/capturas/                Capturas del README
 ```
+
+No edites a mano `index.html`, `assets/`, `fotos/` ni `fuentes/` de la raíz: se generan desde `src/` y `public/`.
 
 ## Cómo correrlo
 
@@ -101,10 +105,20 @@ Requisitos: Node.js 20 o superior.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
+npm run build      # genera la web en la raíz del proyecto
 ```
 
-Sin configurar Supabase, el sitio corre en **modo demostración**:
+Después, en VS Code, presiona **Go Live** (extensión Live Server): abre `index.html` y la web funciona tal cual.
+
+Para trabajar con recarga instantánea mientras editas:
+
+```bash
+npm run dev        # http://localhost:5173 (sirve src/index.html)
+```
+
+Cuando termines los cambios, vuelve a ejecutar `npm run build` para actualizar la versión que ve Go Live.
+
+Sin el archivo `.env.local`, el sitio corre en **modo demostración**:
 
 - muestra alertas de ejemplo, todas marcadas como "Ejemplo";
 - deja votar y reportar para ver cómo cambia el semáforo, pero nada se guarda.
@@ -112,32 +126,36 @@ Sin configurar Supabase, el sitio corre en **modo demostración**:
 Otros comandos:
 
 ```bash
-npm run build      # versión de producción en dist/
-npm run preview    # sirve dist/ en http://localhost:4173
 npm test           # pruebas de la validación del formulario
-npm run test:db    # pruebas de las migraciones (42 comprobaciones de seguridad y semáforo)
+npm run test:db    # pruebas de las migraciones (43 comprobaciones de seguridad y semáforo)
 ```
 
-### Conectar Supabase
+### Supabase
 
-1. Aplica las migraciones de `supabase/migrations/` en orden. Puedes usar el SQL Editor del panel o `supabase db push`.
-2. En **Authentication > Sign In / Providers**, activa **Allow anonymous sign-ins**. Se recomienda activar también CAPTCHA (Turnstile o hCaptcha) para frenar abusos.
-3. Copia `.env.example` como `.env.local` y pega la **clave publicable** (`sb_publishable_...` o `anon`). Nunca uses la clave `secret` ni la `service_role` en el navegador.
-4. Para crear un moderador:
-   - Crea el usuario con correo y contraseña en **Authentication > Users**.
-   - Regístralo en el SQL Editor:
+El proyecto ALDÍA ya tiene aplicadas las 3 migraciones de `supabase/migrations/`, y `.env.local` tiene la URL y la clave publicable.
 
-   ```sql
-   insert into public.moderadores (user_id, sector)
-   values ('<uuid del usuario>', 'villa-del-campo'); -- sector null = todos los sectores
-   ```
+Falta un ajuste del panel que no se puede hacer por código:
 
-   El acceso para moderadores está en `/moderar`, enlazado en el pie de página.
+- En **Authentication > Sign In / Providers**, activa **Allow anonymous sign-ins**. Se recomienda también CAPTCHA (Turnstile o hCaptcha) para frenar abusos.
+
+Nunca uses la clave `secret` ni la `service_role` en el navegador.
+
+Para crear un moderador:
+
+1. Crea el usuario con correo y contraseña en **Authentication > Users**.
+2. Regístralo en el SQL Editor:
+
+```sql
+insert into public.moderadores (user_id, sector)
+values ('<uuid del usuario>', 'villa-del-campo'); -- sector null = todos los sectores
+```
+
+El acceso para moderadores está en `#/moderar`, enlazado en el pie de página.
 
 ## Seguridad
 
 - **RLS activado en todas las tablas** y privilegios mínimos. Se revoca todo y se concede solo lo necesario, columna por columna.
-- **Anonymous Sign-ins:** cada vecino tiene un `user_id` sin crear cuenta. Así "una persona, un voto" se controla en la base de datos.
+- **Anonymous Sign-ins:** cada vecino tiene un `user_id` sin crear cuenta. Así "una persona, un voto" se controla en la base de datos. La identidad se crea recién al votar o reportar; leer no la necesita.
 - **El navegador no decide nada importante:**
   - el nivel del semáforo se calcula en la vista `public.alertas`;
   - los contadores los mantienen disparadores;
@@ -159,17 +177,17 @@ npm run test:db    # pruebas de las migraciones (42 comprobaciones de seguridad 
 
 ## Accesibilidad y rendimiento
 
-- Contraste AA en ambos temas, foco visible, navegación completa con teclado, enlace "Saltar al contenido".
-- Carruseles con pausa y con flechas del teclado.
+- Contraste AA, foco visible, navegación completa con teclado, enlace "Saltar al contenido".
+- Carruseles con flechas del teclado y swipe; el paso automático se detiene con el puntero o el foco encima y no corre con movimiento reducido.
 - Diálogos que atrapan el foco, se cierran con Escape y devuelven el foco al botón que los abrió.
 - Diseño pensado primero para el teléfono, probado a 375 px.
 - Imágenes WebP con tamaño reservado (CLS 0) y carga diferida.
 
-Lighthouse móvil (`npm run build && npm run preview`, Lighthouse 12):
+Lighthouse móvil (`npm run build && npm run preview`, Lighthouse 12, conectado a Supabase):
 
 | Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO |
 | --- | --- | --- | --- | --- |
-| Inicio | 98-99 | 100 | 100 | 100 |
+| Inicio | 96-98 | 100 | 100 | 100 |
 | Alertas | ~90 | 100 | 100 | 100 |
 | Cómo funciona | ~89 | 100 | 100 | 100 |
 
@@ -179,7 +197,7 @@ El inicio carga rápido gracias a una **vista previa estática** del hero en `in
 2. React se descarga cuando el navegador confirma que esa foto ya se pintó.
 3. El hero de React reutiliza esa misma foto en lugar de crear otra.
 
-Si cambias el diseño del hero, ajusta también los estilos de la vista previa en `index.html`.
+Si cambias el diseño del hero, ajusta también los estilos de la vista previa en `src/index.html`.
 
 ## Créditos
 
@@ -200,4 +218,4 @@ Si cambias el diseño del hero, ajusta también los estilos de la vista previa e
 
 - Logo e infografía del semáforo (Canva): los espacios están marcados en Nosotros y en Cómo funciona.
 - Enlaces a los grupos de WhatsApp de cada sector.
-- Despliegue en GitHub Pages (`BASE_PATH=/<repo>/` en el build).
+- Despliegue en GitHub Pages: basta con subir el repositorio y, en Settings > Pages, publicar desde la rama `main` y la carpeta raíz (`/`). Las rutas son relativas, así que funciona con cualquier nombre de repositorio.

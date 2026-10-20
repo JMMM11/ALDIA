@@ -135,6 +135,7 @@ console.log('\n5. Moderación');
 await falla(como(U.B, (tx) => tx.query('update public.reportes set validado_en = now()')), /42501|permission denied/, 'un vecino no puede actualizar reportes');
 await falla(como(U.B, (tx) => tx.query('delete from public.reportes')), /42501|permission denied/, 'un vecino no puede borrar reportes');
 await falla(como(U.B, (tx) => tx.query('select public.validar_reporte($1)', [r2])), /solo_moderadores/, 'un vecino no valida');
+await falla(como(null, (tx) => tx.query('select public.validar_reporte($1)', [r2])), /42501|permission denied/, 'sin sesión ni siquiera se puede llamar');
 await falla(como(U.N, (tx) => tx.query('select public.validar_reporte($1)', [r2])), /solo_moderadores/, 'un moderador en sesión anónima no valida');
 await falla(como(U.M, (tx) => tx.query('select public.validar_reporte($1)', [r2]), { anonimo: false }), /solo_moderadores/, 'moderador de otro sector no valida');
 await como(U.N, (tx) => tx.query('select public.validar_reporte($1)', [r2]), { anonimo: false });

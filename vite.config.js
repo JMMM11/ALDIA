@@ -1,9 +1,19 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// En GitHub Pages el sitio vive en /<nombre-del-repo>/. El flujo de despliegue
-// define BASE_PATH; en local se usa la raíz.
+// El código fuente vive en src/ (con su propio index.html para `npm run dev`).
+// `npm run build` deja la web lista en la raíz del repositorio: index.html,
+// assets/, fotos/ y fuentes/. Así se abre directo con Go Live (Live Server) y
+// GitHub Pages la publica desde la rama, sin configuración extra.
+// base './' hace que todas las rutas sean relativas: funciona en cualquier carpeta.
 export default defineConfig({
-  base: process.env.BASE_PATH || '/',
+  root: 'src',
+  base: './',
+  publicDir: '../public',
+  envDir: '..',
   plugins: [react()],
+  build: {
+    outDir: '..',
+    emptyOutDir: false, // nunca vaciar la raíz del proyecto
+  },
 });

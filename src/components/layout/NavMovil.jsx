@@ -5,7 +5,6 @@ import { NAVEGACION } from '../../data/sitio.js';
 import { useReporte } from '../../context/ReporteContext.jsx';
 import { ICONO_NAV } from '../iconos.js';
 import Modal from '../ui/Modal.jsx';
-import BotonTema from '../ui/BotonTema.jsx';
 import EnlaceNav from './EnlaceNav.jsx';
 import css from './NavMovil.module.css';
 
@@ -78,7 +77,6 @@ export default function NavMovil() {
             );
           })}
         </ul>
-        <BotonTema className={`btn btn-fantasma ${css.tema}`} conTexto />
       </Modal>
     </>
   );

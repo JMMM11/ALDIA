@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'motion/react';
 
-// Lógica compartida por todos los carruseles: paso automático (con pausa),
-// flechas del teclado y deslizar con el dedo.
+// Lógica compartida por todos los carruseles: paso automático, flechas del
+// teclado y deslizar con el dedo. El paso automático se detiene mientras el
+// puntero o el foco están sobre el carrusel, y no corre con movimiento reducido.
 export function useCarrusel(total, { intervalo = 0 } = {}) {
   const [indice, setIndice] = useState(0);
-  const [pausadoPorUsuario, setPausadoPorUsuario] = useState(false);
   const [interactuando, setInteractuando] = useState(false);
   const reducir = useReducedMotion();
-  const automatico = intervalo > 0 && !reducir;
-  const corriendo = automatico && !pausadoPorUsuario && !interactuando;
+  const corriendo = intervalo > 0 && !reducir && !interactuando;
 
   const ir = useCallback((n) => setIndice(((n % total) + total) % total), [total]);
   const siguiente = useCallback(() => setIndice((i) => (i + 1) % total), [total]);
@@ -56,10 +55,7 @@ export function useCarrusel(total, { intervalo = 0 } = {}) {
     ir,
     siguiente,
     anterior,
-    automatico,
     corriendo,
-    pausado: pausadoPorUsuario,
-    alternarPausa: () => setPausadoPorUsuario((p) => !p),
     raiz,
     deslizar,
   };

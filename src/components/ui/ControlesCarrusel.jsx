@@ -1,20 +1,10 @@
 import { motion } from 'motion/react';
-import { CaretLeft, CaretRight, Pause, Play } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import css from './ControlesCarrusel.module.css';
 
 export default function ControlesCarrusel({ c, total, etiquetas, sobreFoto = false, idGrupo }) {
   return (
     <div className={`${css.controles} ${sobreFoto ? css.sobreFoto : ''}`}>
-      {c.automatico && (
-        <button
-          type="button"
-          className={css.boton}
-          onClick={c.alternarPausa}
-          aria-label={c.pausado ? 'Reanudar el paso automático' : 'Pausar el paso automático'}
-        >
-          {c.pausado ? <Play weight="fill" aria-hidden="true" /> : <Pause weight="fill" aria-hidden="true" />}
-        </button>
-      )}
       <button type="button" className={css.boton} onClick={c.anterior} aria-label="Anterior" aria-controls={idGrupo}>
         <CaretLeft weight="bold" aria-hidden="true" />
       </button>

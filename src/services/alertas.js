@@ -39,6 +39,14 @@ export function mensajeError(error) {
   return clave ? MENSAJES[clave] : 'No se pudo completar. Revisa tu conexión e intenta de nuevo.';
 }
 
+// Sesión guardada en este navegador, sin crear una nueva.
+export async function sesionActual() {
+  const supabase = await obtenerCliente();
+  const { data } = await supabase.auth.getSession();
+  return data.session;
+}
+
+// La identidad anónima se crea recién al votar o reportar: leer no la necesita.
 export async function asegurarSesion() {
   const supabase = await obtenerCliente();
   const { data } = await supabase.auth.getSession();

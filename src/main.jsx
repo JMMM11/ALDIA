@@ -2,6 +2,10 @@
 // hero con su foto; la aplicación se descarga recién cuando el navegador avisa
 // que esa foto ya se pintó, para que no compitan. Máximo 1,5 s de espera.
 const arrancar = () => import('./arranque.jsx');
+
+// Si se publicó una versión nueva mientras la página estaba abierta, los
+// fragmentos viejos ya no existen: se recarga para traer los nuevos.
+window.addEventListener('vite:preloadError', () => window.location.reload());
 const previo = document.getElementById('hero-previo');
 const avisaPintura = PerformanceObserver.supportedEntryTypes?.includes('largest-contentful-paint');
 

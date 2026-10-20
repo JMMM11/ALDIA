@@ -16,16 +16,7 @@ export default function Layout({ children }) {
   const esInicio = pathname === '/';
   const idTitulo = useId();
   const [reporte, setReporte] = useState({ abierto: false, tipo: '', vez: 0 });
-
-  // El encabezado es transparente solo mientras se ve el principio del inicio.
-  // Un observador evita escuchar el evento scroll en cada cuadro.
-  const centinela = useRef(null);
-  const [arriba, setArriba] = useState(true);
-  useEffect(() => {
-    const observador = new IntersectionObserver(([e]) => setArriba(e.isIntersecting));
-    observador.observe(centinela.current);
-    return () => observador.disconnect();
-  }, []);
+  const main = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,13 +28,20 @@ export default function Layout({ children }) {
 
   return (
     <ReporteContext.Provider value={contexto}>
-      <a href="#contenido" className="saltar">
+      {/* Las rutas usan el # de la URL, así que el salto se hace moviendo el foco */}
+      <a
+        href="#contenido"
+        className="saltar"
+        onClick={(e) => {
+          e.preventDefault();
+          main.current.focus();
+        }}
+      >
         Saltar al contenido
       </a>
-      <div ref={centinela} className={css.centinela} aria-hidden="true" />
-      <Header sobreFoto={esInicio && arriba} />
+      <Header sobreFoto={esInicio} />
 
-      <main id="contenido" tabIndex={-1} className={esInicio ? css.mainInicio : css.main}>
+      <main ref={main} id="contenido" tabIndex={-1} className={esInicio ? css.mainInicio : css.main}>
         <Suspense fallback={<div className={css.cargando} aria-busy="true" />}>
           <motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
             {children}

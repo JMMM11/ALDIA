@@ -40,10 +40,10 @@ export function DatosProvider({ children }) {
   useEffect(() => {
     if (!enVivo) return;
     recargar();
-    // Con la sesión anónima lista, "es_mio" y los votos propios ya se pueden leer.
+    // Si este navegador ya participó antes, se recuperan sus votos y "es_mio".
     api
-      .asegurarSesion()
-      .then(() => Promise.all([recargar(), api.listarMisVotos().then(setMisVotos)]))
+      .sesionActual()
+      .then((sesion) => sesion && Promise.all([recargar(), api.listarMisVotos().then(setMisVotos)]))
       .catch((e) => setError(api.mensajeError(e)));
 
     let espera;
