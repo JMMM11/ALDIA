@@ -1,0 +1,73 @@
+// Alertas ficticias para el modo demostración (sin Supabase configurado).
+// Todas llevan ejemplo: true y la interfaz las marca como "Ejemplo".
+const hace = (minutos) => new Date(Date.now() - minutos * 60_000).toISOString();
+
+export const crearAlertasEjemplo = () => [
+  {
+    id: 'ej-1',
+    sector: 'martin-sanchez',
+    tipo: 'crecida',
+    descripcion: 'El río Martín Sánchez sube rápido detrás del puente. El agua ya tapa las piedras grandes de la orilla.',
+    nivel: 3,
+    confirmaciones: 5,
+    falsos: 0,
+    creadoEn: hace(18),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-2',
+    sector: 'villa-del-campo',
+    tipo: 'corte-agua',
+    descripcion: 'Sin agua desde las 6 de la mañana en toda la calle principal. El IDAAN anunció trabajos en la potabilizadora.',
+    nivel: 4,
+    confirmaciones: 9,
+    falsos: 0,
+    creadoEn: hace(52),
+    fuente: { nombre: 'IDAAN', url: null },
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-3',
+    sector: 'valle-dorado',
+    tipo: 'via-cerrada',
+    descripcion: 'Árbol caído en la entrada. Los carros están dando la vuelta por la calle de atrás.',
+    nivel: 2,
+    confirmaciones: 2,
+    falsos: 0,
+    creadoEn: hace(9),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-4',
+    sector: 'nicolas-solano',
+    tipo: 'crecida',
+    descripcion: 'La quebrada al lado de la cancha se está llenando. Todavía no se sale, pero va subiendo.',
+    nivel: 1,
+    confirmaciones: 0,
+    falsos: 0,
+    creadoEn: hace(4),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-5',
+    sector: 'valle-dorado',
+    tipo: 'corte-agua',
+    descripcion: 'Baja presión en las casas de la parte alta. Abajo sí está llegando.',
+    nivel: 1,
+    confirmaciones: 1,
+    falsos: 0,
+    creadoEn: hace(26),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+];
+
+export const ESTADISTICAS_EJEMPLO = { alertasConfirmadas: 14, vecinos: 87 };

@@ -1,0 +1,58 @@
+.pagina {
+  display: grid;
+  gap: var(--s-6);
+  padding-block: clamp(2rem, 6vw, 4rem) var(--seccion);
+}
+
+@media (min-width: 960px) {
+  .pagina {
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+    align-items: start;
+  }
+}
+
+.formulario {
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  background: var(--superficie);
+}
+
+.lateral {
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 960px) {
+  .lateral {
+    position: sticky;
+    top: calc(var(--alto-header) + var(--s-5));
+  }
+}
+
+.emergencia {
+  display: flex;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border-radius: var(--radio-tarjeta);
+  background: var(--s4-bg);
+  color: var(--texto);
+}
+
+.emergencia svg {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  color: var(--s4-fg);
+}
+
+.titulo {
+  font-size: var(--t-xl);
+}
+
+.lista {
+  display: grid;
+  gap: var(--s-3);
+  padding-left: 1.2rem;
+  color: var(--texto-suave);
+}

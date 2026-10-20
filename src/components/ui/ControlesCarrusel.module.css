@@ -1,0 +1,76 @@
+.controles {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  --c: var(--texto);
+  --c-borde: var(--borde-fuerte);
+  --c-punto: var(--borde-fuerte);
+}
+
+.sobreFoto {
+  --c: #fff;
+  --c-borde: rgb(255 255 255 / 0.55);
+  --c-punto: rgb(255 255 255 / 0.5);
+}
+
+.boton {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-control);
+  background: transparent;
+  color: var(--c);
+  transition: border-color var(--dur-rapida) var(--ease-out), transform var(--dur-rapida) var(--ease-out);
+}
+
+.boton:active {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) {
+  .boton:hover {
+    border-color: var(--c);
+  }
+}
+
+.boton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.puntos {
+  display: flex;
+  align-items: center;
+}
+
+/* Área táctil de 32 px; el punto visible es más pequeño */
+.punto {
+  position: relative;
+  width: 32px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+
+.punto::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-punto);
+  transform: translate(-50%, -50%);
+}
+
+.activo {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 22px;
+  height: 8px;
+  margin: -4px 0 0 -11px;
+  border-radius: 4px;
+  background: var(--c);
+}

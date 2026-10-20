@@ -1,0 +1,127 @@
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: calc(100svh - var(--alto-nav-movil));
+  overflow: hidden;
+  isolation: isolate;
+  background: #0c111b;
+  color: #fff;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    min-height: min(100svh, 920px);
+  }
+}
+
+/* La foto de la vista previa (index.html) queda debajo y se ve a través */
+.sobrePrevio {
+  background: transparent;
+}
+
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  touch-action: pan-y;
+}
+
+.capa {
+  position: absolute;
+  inset: 0;
+}
+
+.foto,
+.foto img {
+  width: 100%;
+  height: 100%;
+}
+
+.foto img {
+  object-fit: cover;
+}
+
+/* Velo oscuro: garantiza contraste del texto blanco sobre cualquier foto */
+.velo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(8 12 20 / 0.6) 0%, rgb(8 12 20 / 0.1) 30%, rgb(8 12 20 / 0.55) 62%, rgb(8 12 20 / 0.92) 100%),
+    linear-gradient(90deg, rgb(8 12 20 / 0.45) 0%, transparent 60%);
+}
+
+.contenido {
+  display: grid;
+  gap: var(--s-6);
+  align-items: end;
+  padding-top: calc(var(--alto-header) + var(--s-6));
+  padding-bottom: clamp(1.5rem, 5vh, 3.5rem);
+}
+
+@media (min-width: 960px) {
+  .contenido {
+    grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+  }
+}
+
+.texto {
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+}
+
+.titulo {
+  max-width: 16ch;
+  font-size: var(--t-4xl);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.mascara {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  vertical-align: top;
+}
+
+.palabra {
+  display: inline-block;
+}
+
+.mensajes {
+  display: grid;
+  min-height: calc(var(--t-lg) * 1.55 * 3);
+}
+
+@media (min-width: 700px) {
+  .mensajes {
+    min-height: calc(var(--t-lg) * 1.55 * 2);
+  }
+}
+
+.mensaje {
+  grid-area: 1 / 1;
+  max-width: 44ch;
+  color: rgb(255 255 255 / 0.9);
+  font-size: var(--t-lg);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.tarjeta {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .tarjeta {
+    display: grid;
+    margin-bottom: var(--s-6);
+  }
+}

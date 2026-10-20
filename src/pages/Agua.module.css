@@ -1,0 +1,131 @@
+.subtitulo {
+  font-size: var(--t-2xl);
+  margin-bottom: var(--s-4);
+}
+
+.vacio {
+  color: var(--texto-suave);
+}
+
+.cortes {
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 760px) {
+  .cortes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.corte {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie);
+}
+
+.corteCabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.corteCabecera h3 {
+  font-size: var(--t-xl);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.puntosRejilla {
+  display: grid;
+  gap: var(--s-6);
+}
+
+@media (min-width: 900px) {
+  .puntosRejilla {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
+}
+
+.puntos {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.punto {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+}
+
+.punto > svg {
+  width: 32px;
+  height: 32px;
+  color: var(--comunidad);
+}
+
+.punto h3 {
+  font-size: var(--t-lg);
+}
+
+.punto p {
+  color: var(--texto-suave);
+}
+
+@media (max-width: 480px) {
+  .punto {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .punto > :last-child {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+.consejos {
+  background: var(--superficie);
+  border-top: 1px solid var(--borde);
+}
+
+.listaConsejos {
+  display: grid;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+}
+
+@media (min-width: 760px) {
+  .listaConsejos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-5) var(--s-6);
+  }
+}
+
+.listaConsejos li {
+  display: flex;
+  gap: var(--s-3);
+  font-size: var(--t-lg);
+}
+
+.listaConsejos svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 4px;
+  color: var(--comunidad);
+}

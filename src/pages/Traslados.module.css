@@ -1,0 +1,113 @@
+.subtitulo {
+  font-size: var(--t-2xl);
+  margin-bottom: var(--s-4);
+}
+
+.solicitudes {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.solicitud {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie);
+}
+
+.meta {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.respuesta {
+  color: var(--comunidad);
+  font-weight: 550;
+}
+
+.pasos {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-6);
+  counter-reset: paso;
+}
+
+@media (min-width: 860px) {
+  .pasos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.paso {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+}
+
+.paso svg {
+  width: 40px;
+  height: 40px;
+  color: var(--comunidad);
+}
+
+.paso h3 {
+  font-size: var(--t-xl);
+}
+
+.paso p {
+  color: var(--texto-suave);
+}
+
+.rutas {
+  background: var(--superficie);
+  border-top: 1px solid var(--borde);
+}
+
+.cabeceraRutas {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.cabeceraRutas > svg {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  color: var(--comunidad);
+}
+
+.listaRutas {
+  display: grid;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+}
+
+@media (min-width: 860px) {
+  .listaRutas {
+    grid-template-columns: 1.3fr 1fr 1fr;
+  }
+}
+
+.listaRutas li {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie-2);
+}
+
+.listaRutas h3 {
+  font-size: var(--t-lg);
+}
+
+.listaRutas p {
+  color: var(--texto-suave);
+}
+
+.nota {
+  margin-top: var(--s-5);
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}

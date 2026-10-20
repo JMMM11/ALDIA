@@ -1,0 +1,16 @@
+.carrusel {
+  display: grid;
+  gap: var(--s-5);
+}
+
+/* Las diapositivas se apilan en la misma celda: el alto se adapta y el
+   fundido cruzado no hace saltar el contenido de abajo. */
+.pista {
+  display: grid;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.slide {
+  grid-area: 1 / 1;
+}

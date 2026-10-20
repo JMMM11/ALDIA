@@ -1,0 +1,93 @@
+.seccion {
+  background: var(--superficie);
+  border-block: 1px solid var(--borde);
+}
+
+.caja {
+  position: relative;
+  margin-block: var(--s-7) var(--s-6);
+}
+
+.pasos {
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 900px) {
+  .pasos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Línea que une los pasos: vertical en el teléfono, horizontal en escritorio */
+.linea {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 23px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--s1-fg), var(--s2-fg), var(--s3-fg), var(--s4-fg));
+  transform-origin: top;
+  transform: scaleY(var(--progreso, 1));
+}
+
+@media (min-width: 900px) {
+  .linea {
+    inset: 23px 12% auto 24px;
+    width: auto;
+    height: 2px;
+    background: linear-gradient(90deg, var(--s1-fg), var(--s2-fg), var(--s3-fg), var(--s4-fg));
+    transform-origin: left;
+    transform: scaleX(var(--progreso, 1));
+  }
+}
+
+.paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  column-gap: var(--s-4);
+  row-gap: var(--s-1);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .paso {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-3);
+  }
+  .paso .icono {
+    grid-row: auto;
+  }
+}
+
+.icono {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-nivel);
+  color: var(--fg);
+  box-shadow: 0 0 0 6px var(--superficie);
+}
+
+.icono svg {
+  width: 24px;
+  height: 24px;
+}
+
+.paso[data-nivel='1'] { --fg: var(--s1-fg); --bg-nivel: var(--s1-bg); }
+.paso[data-nivel='2'] { --fg: var(--s2-fg); --bg-nivel: var(--s2-bg); }
+.paso[data-nivel='3'] { --fg: var(--s3-fg); --bg-nivel: var(--s3-bg); }
+.paso[data-nivel='4'] { --fg: var(--s4-fg); --bg-nivel: var(--s4-bg); }
+
+.nombre {
+  font-size: var(--t-lg);
+  align-self: center;
+}
+
+.regla {
+  color: var(--texto-suave);
+}

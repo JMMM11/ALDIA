@@ -1,0 +1,31 @@
+.espacio {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--s-1);
+  padding: var(--s-5);
+  border: 2px dashed var(--borde-fuerte);
+  border-radius: var(--radio-tarjeta);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 14px,
+    color-mix(in srgb, var(--superficie-2) 60%, transparent) 14px 28px
+  );
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.icono {
+  width: 32px;
+  height: 32px;
+}
+
+.pieza {
+  font-family: var(--font-titulo);
+  font-weight: 650;
+  color: var(--texto);
+}
+
+.nota {
+  font-size: var(--t-sm);
+}

@@ -1,0 +1,102 @@
+/*
+  Tokens de ALDÍA.
+  Dirección: "hora azul". Lienzo azul profundo, superficies un paso más claras,
+  sin sombras, controles en forma de píldora. Reglas de rol:
+  - --accion: solo la acción principal de cada vista (Reportar, Enviar).
+  - --comunidad (turquesa): señales de la comunidad (confirmaciones) y anillo de foco.
+  - Colores del semáforo: solo dentro de insignias y pasos del semáforo.
+*/
+:root {
+  --font-titulo: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-texto: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala fluida; el texto base nunca baja de 16 px */
+  --t-sm: 0.875rem;
+  --t-base: 1rem;
+  --t-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --t-xl: clamp(1.25rem, 1.12rem + 0.6vw, 1.5rem);
+  --t-2xl: clamp(1.5rem, 1.25rem + 1.2vw, 2rem);
+  --t-3xl: clamp(1.875rem, 1.35rem + 2.2vw, 2.75rem);
+  --t-4xl: clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem);
+
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+
+  --radio-control: 999px;
+  --radio-tarjeta: 14px;
+  --radio-chico: 8px;
+
+  --ancho-max: 1200px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --seccion: clamp(3.5rem, 8vw, 6rem);
+  --alto-header: 68px;
+  --alto-nav-movil: 68px;
+
+  --dur-rapida: 150ms;
+  --dur: 250ms;
+  --dur-lenta: 400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --z-header: 30;
+  --z-nav: 40;
+  --z-modal: 50;
+
+  /* Tema claro */
+  color-scheme: light;
+  --bg: #eef2f7;
+  --superficie: #ffffff;
+  --superficie-2: #e4eaf2;
+  --texto: #0d1a2b;
+  --texto-suave: #44546a;
+  --borde: #d2dae5;
+  --borde-fuerte: #8e9cb0;
+  --accion: #1f4fd1;
+  --accion-hover: #1a44b8;
+  --accion-texto: #ffffff;
+  --comunidad: #0b766f;
+  --comunidad-suave: #d3f1ec;
+  --comunidad-sobre: #ffffff;
+  --velo: rgb(13 26 43 / 0.45);
+
+  --s1-fg: #4b5565;
+  --s1-bg: #e6eaf0;
+  --s2-fg: #7a5600;
+  --s2-bg: #fdf0c4;
+  --s3-fg: #9a4300;
+  --s3-bg: #fde2cc;
+  --s4-fg: #b42318;
+  --s4-bg: #fde3e1;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c111b;
+  --superficie: #141b28;
+  --superficie-2: #1c2535;
+  --texto: #e8edf5;
+  --texto-suave: #a7b2c3;
+  --borde: #263043;
+  --borde-fuerte: #4c5a72;
+  --accion: #3561e6;
+  --accion-hover: #4a73f0;
+  --accion-texto: #ffffff;
+  --comunidad: #3fd0c2;
+  --comunidad-suave: #12332f;
+  --comunidad-sobre: #062420;
+  --velo: rgb(4 8 14 / 0.6);
+
+  --s1-fg: #b7c0cd;
+  --s1-bg: #232c3b;
+  --s2-fg: #f5cd57;
+  --s2-bg: #3a3014;
+  --s3-fg: #ff9f5a;
+  --s3-bg: #3d2414;
+  --s4-fg: #ff7a70;
+  --s4-bg: #401c1c;
+}

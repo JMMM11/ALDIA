@@ -1,0 +1,123 @@
+/* Tarjeta de vidrio flotando sobre la foto */
+.tarjeta {
+  gap: var(--s-3);
+  justify-items: start;
+  width: 100%;
+  max-width: 380px;
+  justify-self: end;
+  padding: var(--s-5);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--superficie) 84%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  color: var(--texto);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .tarjeta {
+    background: var(--superficie);
+  }
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  font-weight: 550;
+}
+
+.tipo svg {
+  width: 20px;
+  height: 20px;
+  color: var(--texto);
+}
+
+.titulo {
+  font-family: var(--font-titulo);
+  font-size: var(--t-xl);
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.confirmaciones {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.puntos {
+  display: flex;
+  gap: 6px;
+}
+
+.hueco {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1.5px dashed var(--borde-fuerte);
+  border-radius: 50%;
+}
+
+.check {
+  display: grid;
+  color: var(--comunidad);
+}
+
+.check svg {
+  width: 30px;
+  height: 30px;
+}
+
+.conteo {
+  color: var(--comunidad);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.notaCaja {
+  display: grid;
+  min-height: 1.5em;
+}
+
+.nota {
+  grid-area: 1 / 1;
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.progreso {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.segmento {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--superficie-2);
+  overflow: hidden;
+}
+
+.relleno {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+}
+
+.segmento[data-nivel='1'] .relleno { background: var(--s1-fg); }
+.segmento[data-nivel='2'] .relleno { background: var(--s2-fg); }
+.segmento[data-nivel='3'] .relleno { background: var(--s3-fg); }
+.segmento[data-nivel='4'] .relleno { background: var(--s4-fg); }

@@ -1,0 +1,65 @@
+.footer {
+  padding-block: var(--s-8) var(--s-6);
+  border-top: 1px solid var(--borde);
+  background: var(--superficie);
+  font-size: var(--t-sm);
+  color: var(--texto-suave);
+}
+
+.rejilla {
+  display: grid;
+  gap: var(--s-6);
+}
+
+@media (min-width: 800px) {
+  .rejilla {
+    grid-template-columns: 1.6fr 1fr 1fr;
+  }
+}
+
+.marca {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  color: var(--texto);
+}
+
+.eslogan {
+  font-family: var(--font-titulo);
+  font-size: var(--t-xl);
+  font-weight: 650;
+}
+
+.aviso {
+  max-width: 44ch;
+  color: var(--texto-suave);
+}
+
+.aviso strong {
+  color: var(--texto);
+}
+
+.titulo {
+  margin-bottom: var(--s-3);
+  color: var(--texto);
+  font-size: var(--t-base);
+}
+
+.enlaces,
+.creditos {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.footer a {
+  color: var(--texto);
+  text-underline-offset: 3px;
+}
+
+.base {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--borde);
+}

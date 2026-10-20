@@ -1,0 +1,110 @@
+.detalle {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding-right: 3rem;
+}
+
+.tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--texto-suave);
+  font-weight: 550;
+}
+
+.tipo svg {
+  width: 24px;
+  height: 24px;
+  color: var(--texto);
+}
+
+.titulo {
+  font-size: var(--t-2xl);
+}
+
+.descripcion {
+  font-size: var(--t-lg);
+}
+
+.datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3) var(--s-4);
+  margin: 0;
+  padding: var(--s-4);
+  border-radius: var(--radio-chico);
+  background: var(--superficie-2);
+}
+
+.datos dt {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+}
+
+.datos dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.comunidad {
+  color: var(--comunidad);
+}
+
+.semaforo {
+  display: grid;
+  gap: var(--s-3);
+  justify-items: start;
+}
+
+.subtitulo {
+  font-size: var(--t-base);
+}
+
+.escalera {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-1);
+  width: 100%;
+}
+
+.escalera li {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-1);
+  padding: var(--s-2) var(--s-1);
+  border-top: 4px solid var(--borde);
+  color: var(--texto-suave);
+  font-size: 0.8125rem;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.escalera svg {
+  width: 18px;
+  height: 18px;
+}
+
+.escalera li[data-alcanzado='true'][data-nivel='1'] { border-color: var(--s1-fg); color: var(--texto); }
+.escalera li[data-alcanzado='true'][data-nivel='2'] { border-color: var(--s2-fg); color: var(--texto); }
+.escalera li[data-alcanzado='true'][data-nivel='3'] { border-color: var(--s3-fg); color: var(--texto); }
+.escalera li[data-alcanzado='true'][data-nivel='4'] { border-color: var(--s4-fg); color: var(--texto); }
+
+.escalera li[aria-current='step'] {
+  font-weight: 650;
+}
+
+.siguiente {
+  color: var(--texto-suave);
+}
+
+.fuente {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}

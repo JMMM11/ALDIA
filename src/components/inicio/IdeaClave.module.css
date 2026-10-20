@@ -1,0 +1,58 @@
+.seccion {
+  padding-block: clamp(4rem, 12vw, 9rem);
+}
+
+.rejilla {
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 960px) {
+  .rejilla {
+    grid-template-columns: minmax(0, 1.6fr) minmax(240px, 0.6fr);
+    align-items: end;
+  }
+}
+
+.frase {
+  font-family: var(--font-titulo);
+  font-size: var(--t-3xl);
+  font-weight: 650;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.cifras {
+  display: grid;
+  gap: var(--s-5);
+  margin: 0;
+}
+
+.cifra {
+  display: grid;
+  gap: var(--s-1);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--borde-fuerte);
+}
+
+.cifra dt {
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+
+.cifra dd {
+  margin: 0;
+  font-family: var(--font-titulo);
+  font-size: var(--t-4xl);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--comunidad);
+}
+
+.marca {
+  justify-self: start;
+}

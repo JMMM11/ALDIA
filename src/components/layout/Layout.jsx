@@ -1,0 +1,64 @@
+import { Suspense, lazy, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'wouter';
+import { motion } from 'motion/react';
+import { ReporteContext } from '../../context/ReporteContext.jsx';
+import Modal from '../ui/Modal.jsx';
+import Header from './Header.jsx';
+import NavMovil from './NavMovil.jsx';
+import Footer from './Footer.jsx';
+import css from './Layout.module.css';
+
+// El formulario se descarga recién cuando alguien abre "Reportar".
+const FormularioReporte = lazy(() => import('../alertas/FormularioReporte.jsx'));
+
+export default function Layout({ children }) {
+  const [pathname] = useLocation();
+  const esInicio = pathname === '/';
+  const idTitulo = useId();
+  const [reporte, setReporte] = useState({ abierto: false, tipo: '', vez: 0 });
+
+  // El encabezado es transparente solo mientras se ve el principio del inicio.
+  // Un observador evita escuchar el evento scroll en cada cuadro.
+  const centinela = useRef(null);
+  const [arriba, setArriba] = useState(true);
+  useEffect(() => {
+    const observador = new IntersectionObserver(([e]) => setArriba(e.isIntersecting));
+    observador.observe(centinela.current);
+    return () => observador.disconnect();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  const abrirReporte = useCallback((tipo = '') => setReporte((r) => ({ abierto: true, tipo, vez: r.vez + 1 })), []);
+  const cerrarReporte = useCallback(() => setReporte((r) => ({ ...r, abierto: false })), []);
+  const contexto = useMemo(() => ({ abrirReporte }), [abrirReporte]);
+
+  return (
+    <ReporteContext.Provider value={contexto}>
+      <a href="#contenido" className="saltar">
+        Saltar al contenido
+      </a>
+      <div ref={centinela} className={css.centinela} aria-hidden="true" />
+      <Header sobreFoto={esInicio && arriba} />
+
+      <main id="contenido" tabIndex={-1} className={esInicio ? css.mainInicio : css.main}>
+        <Suspense fallback={<div className={css.cargando} aria-busy="true" />}>
+          <motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+            {children}
+          </motion.div>
+        </Suspense>
+      </main>
+
+      <Footer />
+      <NavMovil />
+
+      <Modal abierto={reporte.abierto} onCerrar={cerrarReporte} idTitulo={idTitulo}>
+        <Suspense fallback={<p aria-busy="true">Cargando formulario…</p>}>
+          <FormularioReporte key={reporte.vez} tipoInicial={reporte.tipo} idTitulo={idTitulo} onListo={cerrarReporte} />
+        </Suspense>
+      </Modal>
+    </ReporteContext.Provider>
+  );
+}

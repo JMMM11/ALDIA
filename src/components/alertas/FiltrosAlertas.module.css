@@ -1,0 +1,74 @@
+.filtros {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.grupo {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.leyenda {
+  margin-bottom: var(--s-2);
+  padding: 0;
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  font-weight: 550;
+}
+
+/* En el teléfono los filtros se deslizan de lado en vez de ocupar varias filas */
+.chips {
+  display: flex;
+  gap: var(--s-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 2px var(--gutter);
+}
+
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .chips {
+    flex-wrap: wrap;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.chip {
+  position: relative;
+  flex: none;
+  min-height: 44px;
+  padding: 0 1.125rem;
+  border: 1px solid var(--borde-fuerte);
+  border-radius: var(--radio-control);
+  background: transparent;
+  color: var(--texto);
+  font-weight: 500;
+  scroll-snap-align: start;
+  isolation: isolate;
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--texto);
+  color: var(--bg);
+}
+
+.fondo {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--texto);
+}
+
+.texto {
+  position: relative;
+}

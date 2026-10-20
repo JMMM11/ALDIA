@@ -1,0 +1,29 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.marca {
+  width: 32px;
+  height: 32px;
+}
+
+.fondo {
+  fill: #0c111b;
+}
+
+.ola {
+  stroke: #3fd0c2;
+}
+
+.punto {
+  fill: #3561e6;
+}
+
+.texto {
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}

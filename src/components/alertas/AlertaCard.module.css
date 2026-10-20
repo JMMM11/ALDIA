@@ -1,0 +1,109 @@
+.tarjeta {
+  position: relative;
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  height: 100%;
+  padding: clamp(1.125rem, 3vw, 1.5rem);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie);
+  transition: border-color var(--dur) var(--ease-out);
+}
+
+/* "Reportado" todavía no se difunde: se ve más discreto */
+.tarjeta[data-nivel='1'] {
+  border-style: dashed;
+  background: transparent;
+}
+
+.tarjeta:has(.abrir:focus-visible) {
+  outline: 3px solid var(--comunidad);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .tarjeta:hover {
+    border-color: var(--borde-fuerte);
+  }
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.tipo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  font-weight: 550;
+}
+
+.tipo svg {
+  width: 22px;
+  height: 22px;
+  color: var(--texto);
+}
+
+.titulo {
+  font-size: var(--t-xl);
+}
+
+/* Todo el área de la tarjeta abre el detalle; los botones de voto quedan encima */
+.abrir {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.abrir:focus-visible {
+  outline: none;
+}
+
+.abrir::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.descripcion {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--texto-suave);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--texto-suave);
+}
+
+.meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+
+.meta svg {
+  width: 16px;
+  height: 16px;
+}
+
+.confirmaciones {
+  color: var(--comunidad);
+  font-weight: 600;
+}

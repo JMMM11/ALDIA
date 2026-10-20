@@ -1,0 +1,29 @@
+.centinela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 96px;
+  pointer-events: none;
+}
+
+.main,
+.mainInicio {
+  outline: none;
+}
+
+.main {
+  padding-top: var(--alto-header);
+  min-height: 70vh;
+}
+
+.cargando {
+  min-height: 100vh;
+}
+
+/* Espacio para que la barra inferior no tape el final de la página */
+@media (max-width: 1023px) {
+  :global(body) {
+    padding-bottom: calc(var(--alto-nav-movil) + env(safe-area-inset-bottom));
+  }
+}

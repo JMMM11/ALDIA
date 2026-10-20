@@ -1,0 +1,59 @@
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 0.75rem;
+  border-radius: var(--radio-control);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--fg);
+  background: var(--bg-nivel);
+  transition:
+    background-color var(--dur-lenta) var(--ease-out),
+    color var(--dur-lenta) var(--ease-out);
+}
+
+.grande {
+  min-height: 38px;
+  padding: 0 1rem;
+  font-size: var(--t-base);
+}
+
+.badge[data-nivel='1'] {
+  --fg: var(--s1-fg);
+  --bg-nivel: var(--s1-bg);
+}
+.badge[data-nivel='2'] {
+  --fg: var(--s2-fg);
+  --bg-nivel: var(--s2-bg);
+}
+.badge[data-nivel='3'] {
+  --fg: var(--s3-fg);
+  --bg-nivel: var(--s3-bg);
+}
+.badge[data-nivel='4'] {
+  --fg: var(--s4-fg);
+  --bg-nivel: var(--s4-bg);
+}
+
+.contenido {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.icono {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+}
+
+.pulso {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--fg);
+  pointer-events: none;
+}
