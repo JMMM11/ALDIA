@@ -1,12 +1,13 @@
 import { motion } from 'motion/react';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
+import Icono from './Icono.jsx';
 import css from './ControlesCarrusel.module.css';
 
 export default function ControlesCarrusel({ c, total, etiquetas, sobreFoto = false, idGrupo }) {
   return (
     <div className={`${css.controles} ${sobreFoto ? css.sobreFoto : ''}`}>
       <button type="button" className={css.boton} onClick={c.anterior} aria-label="Anterior" aria-controls={idGrupo}>
-        <CaretLeft weight="bold" aria-hidden="true" />
+        <Icono de={ChevronLeft} mov="atras" entrada={false} />
       </button>
       <div className={css.puntos}>
         {Array.from({ length: total }, (_, i) => (
@@ -26,7 +27,7 @@ export default function ControlesCarrusel({ c, total, etiquetas, sobreFoto = fal
         ))}
       </div>
       <button type="button" className={css.boton} onClick={c.siguiente} aria-label="Siguiente" aria-controls={idGrupo}>
-        <CaretRight weight="bold" aria-hidden="true" />
+        <Icono de={ChevronRight} mov="empujar" entrada={false} />
       </button>
     </div>
   );

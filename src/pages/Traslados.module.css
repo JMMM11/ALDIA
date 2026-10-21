@@ -18,6 +18,10 @@
 }
 
 .meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
   color: var(--texto-suave);
   font-size: var(--t-sm);
 }
@@ -71,7 +75,7 @@
   gap: var(--s-4);
 }
 
-.cabeceraRutas > svg {
+.cabeceraRutas > :global(.icono-mov) svg {
   flex: none;
   width: 48px;
   height: 48px;

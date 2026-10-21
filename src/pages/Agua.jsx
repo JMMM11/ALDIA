@@ -1,4 +1,5 @@
-import { Drop, MapPin } from '@phosphor-icons/react';
+import { DropletFill, GeoAltFill } from 'react-bootstrap-icons';
+import Icono from '../components/ui/Icono.jsx';
 import { FOTOS } from '../data/fotos.js';
 import { CONSEJOS_AGUA, PUNTOS_AGUA } from '../data/secciones.js';
 import { nombreSector } from '../data/catalogos.js';
@@ -59,7 +60,7 @@ export default function Agua() {
           <Escalonado as="ul" className={css.puntos}>
             {PUNTOS_AGUA.map((p) => (
               <ItemEscalonado as="li" key={p.id} className={css.punto}>
-                <MapPin weight="duotone" aria-hidden="true" />
+                <Icono de={GeoAltFill} mov="gota" />
                 <div>
                   <h3>{p.lugar}</h3>
                   <p>
@@ -81,7 +82,7 @@ export default function Agua() {
           <ul className={css.listaConsejos}>
             {CONSEJOS_AGUA.map((c) => (
               <li key={c}>
-                <Drop weight="fill" aria-hidden="true" />
+                <Icono de={DropletFill} mov="gota" />
                 <span>{c}</span>
               </li>
             ))}

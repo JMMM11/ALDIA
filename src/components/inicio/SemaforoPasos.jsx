@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { motion } from 'motion/react';
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { NIVELES } from '../../data/semaforo.js';
 import { ICONO_NIVEL } from '../iconos.js';
 import css from './SemaforoPasos.module.css';
@@ -27,7 +28,7 @@ export default function SemaforoPasos() {
           />
           <ol className={css.pasos}>
           {NIVELES.map((n, i) => {
-            const Icono = ICONO_NIVEL[n.id];
+            const icono = ICONO_NIVEL[n.id];
             return (
               <motion.li
                 key={n.id}
@@ -39,7 +40,7 @@ export default function SemaforoPasos() {
                 }}
               >
                 <span className={css.icono}>
-                  <Icono weight="bold" aria-hidden="true" />
+                  <Icono {...icono} />
                 </span>
                 <h3 className={css.nombre}>{n.nombre}</h3>
                 <p className={css.regla}>{n.regla}</p>
@@ -51,7 +52,7 @@ export default function SemaforoPasos() {
 
         <Link to="/como-funciona" className="enlace">
           Ver las reglas completas
-          <ArrowRight aria-hidden="true" />
+          <Icono de={ArrowRight} mov="empujar" entrada={false} />
         </Link>
       </div>
     </section>

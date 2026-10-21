@@ -12,10 +12,10 @@
     "test:db": "node supabase/pruebas/probar-migraciones.mjs"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.118.0",
     "motion": "^14.4.0",
     "react": "^19.3.1",
+    "react-bootstrap-icons": "^1.11.6",
     "react-dom": "^19.3.1",
     "wouter": "^3.13.0"
   },

@@ -1,4 +1,6 @@
-// Alertas ficticias para el modo demostración (sin Supabase configurado).
+// Alertas ficticias para la demostración y la vista previa (SITIO.vistaPrevia):
+// cubren los cuatro niveles, un reporte propio, uno que bajó por votos falsos y
+// dos traslados.
 // Todas llevan ejemplo: true y la interfaz las marca como "Ejemplo".
 const hace = (minutos) => new Date(Date.now() - minutos * 60_000).toISOString();
 
@@ -66,6 +68,89 @@ export const crearAlertasEjemplo = () => [
     creadoEn: hace(26),
     fuente: null,
     esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-6',
+    sector: 'valle-dorado',
+    tipo: 'crecida',
+    descripcion: 'El río Caimito se salió en la parte baja. SINAPROC está evacuando las casas cerca de la orilla.',
+    nivel: 4,
+    confirmaciones: 12,
+    falsos: 0,
+    creadoEn: hace(75),
+    fuente: { nombre: 'SINAPROC', url: null },
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    id: 'ej-7',
+    sector: 'nicolas-solano',
+    tipo: 'corte-agua',
+    descripcion: 'Tubo roto frente al colegio. Un moderador del sector fue a verlo y lo validó.',
+    nivel: 3,
+    confirmaciones: 1,
+    falsos: 0,
+    validada: true,
+    creadoEn: hace(34),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    // Más votos de "es falso" que confirmaciones: baja un nivel (de 2 a 1).
+    id: 'ej-8',
+    sector: 'martin-sanchez',
+    tipo: 'via-cerrada',
+    descripcion: 'Dicen que cerraron la vía principal por un choque, pero varios vecinos pasaron y está abierta.',
+    nivel: 1,
+    confirmaciones: 2,
+    falsos: 3,
+    creadoEn: hace(40),
+    fuente: null,
+    esMio: false,
+    ejemplo: true,
+  },
+  {
+    // Un reporte propio: no se puede confirmar a uno mismo.
+    id: 'ej-9',
+    sector: 'villa-del-campo',
+    tipo: 'via-cerrada',
+    descripcion: 'Hueco grande en la calle 3 lleno de agua. Los carros pequeños no pueden pasar.',
+    nivel: 1,
+    confirmaciones: 1,
+    falsos: 0,
+    creadoEn: hace(12),
+    fuente: null,
+    esMio: true,
+    ejemplo: true,
+  },
+  {
+    // Los traslados no salen en Alertas: solo los ve quien pidió y el moderador.
+    id: 'ej-10',
+    sector: 'villa-del-campo',
+    tipo: 'traslado',
+    descripcion: 'Mi mamá tiene cita de diálisis a las 9:00 en el Nicolás Solano y la autopista está trancada.',
+    nivel: 1,
+    confirmaciones: 0,
+    falsos: 0,
+    creadoEn: hace(22),
+    fuente: null,
+    esMio: true,
+    nota: 'Un vecino sale a las 8:00 por la vía de Santa Clara. Te espera frente a la casa comunal.',
+    ejemplo: true,
+  },
+  {
+    id: 'ej-11',
+    sector: 'villa-del-campo',
+    tipo: 'traslado',
+    descripcion: 'Necesito llegar a urgencias con mi hijo, tiene fiebre alta. No tengo carro.',
+    nivel: 1,
+    confirmaciones: 0,
+    falsos: 0,
+    creadoEn: hace(3),
+    fuente: null,
+    esMio: true,
     ejemplo: true,
   },
 ];

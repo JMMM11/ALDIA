@@ -17,7 +17,7 @@ export default function IdeaClave() {
   const ref = useRef(null);
   const reducir = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.85', 'end 0.45'] });
-  const { estadisticas, modo } = useDatos();
+  const { estadisticas, conEjemplos } = useDatos();
   const palabras = SITIO.ideaClave.split(' ');
 
   return (
@@ -53,7 +53,7 @@ export default function IdeaClave() {
               </dd>
             </div>
           </dl>
-          {modo === 'demo' && <span className={`ejemplo ${css.marca}`}>Cifras de ejemplo</span>}
+          {conEjemplos && <span className={`ejemplo ${css.marca}`}>Incluye cifras de ejemplo</span>}
         </div>
       </div>
     </section>

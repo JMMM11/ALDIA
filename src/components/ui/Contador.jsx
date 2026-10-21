@@ -1,28 +1,47 @@
-import { useEffect, useRef } from 'react';
-import { animate, motion, useInView, useMotionValue, useReducedMotion, useTransform } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
+import css from './Contador.module.css';
 
-// Número que cuenta desde cero al entrar en pantalla. Usa un valor de Motion
-// (no estado de React) para no volver a renderizar en cada cuadro.
+const ALTO = 1.1; // alto de cada cifra en em (igual que .tira > span)
+const CIFRAS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// Contador mecánico: cada dígito es una tira 0-9 (dos vueltas) que rueda hasta
+// su valor al entrar en pantalla. Si la cifra cambia en vivo, la tira rueda al
+// dígito nuevo. Con "reducir movimiento" MotionConfig lo deja quieto.
+function Digito({ d, visible, orden }) {
+  return (
+    <span className={css.ventana}>
+      <motion.span
+        className={css.tira}
+        initial={{ y: 0 }}
+        animate={{ y: visible ? `${-(d + 10) * ALTO}em` : 0 }}
+        transition={{ type: 'spring', stiffness: 38, damping: 13, delay: orden * 0.12 }}
+      >
+        {[...CIFRAS, ...CIFRAS].map((n, i) => (
+          <span key={i}>{n}</span>
+        ))}
+      </motion.span>
+    </span>
+  );
+}
+
 export default function Contador({ valor }) {
   const ref = useRef(null);
-  const enVista = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
-  const reducir = useReducedMotion();
-  const cuenta = useMotionValue(0);
-  const texto = useTransform(cuenta, (v) => Math.round(v).toLocaleString('es-PA'));
-
-  useEffect(() => {
-    if (!enVista || valor == null) return;
-    if (reducir) {
-      cuenta.set(valor);
-      return;
-    }
-    const control = animate(cuenta, valor, { duration: 0.9, ease: [0.22, 1, 0.36, 1] });
-    return () => control.stop();
-  }, [enVista, valor, reducir, cuenta]);
+  const visible = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
+  const texto = (valor ?? 0).toLocaleString('es-PA');
 
   return (
     <span ref={ref}>
-      <motion.span aria-hidden="true">{texto}</motion.span>
+      <span aria-hidden="true" className={css.cifras}>
+        {/* La clave cuenta desde la derecha: las unidades siguen siendo las unidades si la cifra crece */}
+        {[...texto].map((c, i) =>
+          /\d/.test(c) ? (
+            <Digito key={texto.length - i} d={Number(c)} visible={visible} orden={i} />
+          ) : (
+            <span key={`s${texto.length - i}`}>{c}</span>
+          ),
+        )}
+      </span>
       <span className="visualmente-oculto">{valor?.toLocaleString('es-PA')}</span>
     </span>
   );

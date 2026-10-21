@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { SignOut } from '@phosphor-icons/react';
+import { BoxArrowRight } from 'react-bootstrap-icons';
+import Icono from '../components/ui/Icono.jsx';
 import { useDatos } from '../context/DatosContext.jsx';
 import { nombreSector } from '../data/catalogos.js';
 import { mensajeError } from '../services/alertas.js';
@@ -165,7 +166,7 @@ export default function Moderar() {
   };
 
   const visibles = moderador
-    ? alertas.filter((a) => moderador.sector === null || a.sector === moderador.sector)
+    ? alertas.filter((a) => !a.ejemplo && (moderador.sector === null || a.sector === moderador.sector))
     : [];
 
   return (
@@ -186,7 +187,7 @@ export default function Moderar() {
                 {moderador.correo}, {moderador.sector ? nombreSector(moderador.sector) : 'todos los sectores'}
               </p>
               <button type="button" className="btn btn-fantasma btn-chico" onClick={salir}>
-                <SignOut aria-hidden="true" />
+                <Icono de={BoxArrowRight} mov="empujar" entrada={false} />
                 Salir
               </button>
             </div>

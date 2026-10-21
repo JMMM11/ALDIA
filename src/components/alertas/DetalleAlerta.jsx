@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight } from '@phosphor-icons/react';
+import { ArrowUpRight } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { nombreSector, tipoPorId } from '../../data/catalogos.js';
 import { NIVELES, nivelPorNumero } from '../../data/semaforo.js';
 import { haceCuanto, horaCorta } from '../../lib/tiempo.js';
@@ -12,14 +13,14 @@ import css from './DetalleAlerta.module.css';
 const esEnlaceSeguro = (url) => typeof url === 'string' && url.startsWith('https://');
 
 export default function DetalleAlerta({ alerta, idTitulo, ahora }) {
-  const Icono = ICONO_TIPO[alerta.tipo];
+  const tipo = ICONO_TIPO[alerta.tipo];
   const info = nivelPorNumero(alerta.nivel);
 
   return (
     <div className={css.detalle}>
       <div className={css.cabecera}>
         <span className={css.tipo}>
-          <Icono weight="duotone" aria-hidden="true" />
+          <Icono {...tipo} />
           {tipoPorId(alerta.tipo).nombre}
         </span>
         {alerta.ejemplo && <span className="ejemplo">Ejemplo</span>}
@@ -59,11 +60,11 @@ export default function DetalleAlerta({ alerta, idTitulo, ahora }) {
         <EstadoBadge nivel={alerta.nivel} grande />
         <ol className={css.escalera} aria-label="Niveles del semáforo">
           {NIVELES.map((n) => {
-            const IconoNivel = ICONO_NIVEL[n.id];
+            const nivelIcono = ICONO_NIVEL[n.id];
             const alcanzado = n.nivel <= alerta.nivel;
             return (
               <li key={n.id} data-nivel={n.nivel} data-alcanzado={alcanzado} aria-current={n.nivel === alerta.nivel ? 'step' : undefined}>
-                <IconoNivel weight="bold" aria-hidden="true" />
+                <Icono {...nivelIcono} />
                 <span>{n.corto}</span>
               </li>
             );
@@ -78,7 +79,7 @@ export default function DetalleAlerta({ alerta, idTitulo, ahora }) {
           {esEnlaceSeguro(alerta.fuente.url) ? (
             <a className="enlace" href={alerta.fuente.url} target="_blank" rel="noopener noreferrer">
               Aviso de {alerta.fuente.nombre}
-              <ArrowUpRight aria-hidden="true" />
+              <Icono de={ArrowUpRight} mov="empujar" entrada={false} />
               <span className="visualmente-oculto">(se abre en otra pestaña)</span>
             </a>
           ) : (

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { Clock, UsersThree } from '@phosphor-icons/react';
+import { Clock, PeopleFill } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { nombreSector, tipoPorId } from '../../data/catalogos.js';
 import { haceCuanto } from '../../lib/tiempo.js';
 import { ICONO_TIPO } from '../iconos.js';
@@ -11,14 +12,14 @@ export const tituloAlerta = (a) => `${tipoPorId(a.tipo).nombre} en ${nombreSecto
 
 // El título comparte layoutId con el del detalle: al abrirlo, "viaja" hasta el diálogo.
 export default function AlertaCard({ alerta, onAbrir, ahora }) {
-  const Icono = ICONO_TIPO[alerta.tipo];
+  const tipo = ICONO_TIPO[alerta.tipo];
   const n = alerta.confirmaciones;
 
   return (
     <article className={css.tarjeta} data-nivel={alerta.nivel}>
       <div className={css.cabecera}>
         <span className={css.tipo}>
-          <Icono weight="duotone" aria-hidden="true" />
+          <Icono {...tipo} />
           {tipoPorId(alerta.tipo).corto}
         </span>
         <EstadoBadge nivel={alerta.nivel} />
@@ -34,11 +35,11 @@ export default function AlertaCard({ alerta, onAbrir, ahora }) {
 
       <div className={css.meta}>
         <span>
-          <Clock aria-hidden="true" />
+          <Icono de={Clock} />
           <time dateTime={alerta.creadoEn}>{haceCuanto(alerta.creadoEn, ahora)}</time>
         </span>
         <span className={css.confirmaciones}>
-          <UsersThree weight="bold" aria-hidden="true" />
+          <Icono de={PeopleFill} mov="latido" />
           {n} {n === 1 ? 'confirmación' : 'confirmaciones'}
         </span>
         {alerta.ejemplo && <span className="ejemplo">Ejemplo</span>}

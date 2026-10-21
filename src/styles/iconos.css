@@ -1,0 +1,61 @@
+/* Global (no módulo): los nombres de @keyframes se usan desde una variable. */
+.icono-mov {
+  display: inline-flex;
+  flex: none;
+  line-height: 0;
+}
+
+/* El mismo movimiento se repite al pasar el cursor por lo que contiene al ícono */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :is(a, button, label, li, article):hover > .icono-mov > svg,
+  :is(a, button, label, li, article):hover > * > .icono-mov > svg,
+  :is(a, button, label, li, article):hover > * > * > .icono-mov > svg {
+    animation: var(--mov) 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.icono-mov[data-mov='ola'] { --mov: ola; }
+.icono-mov[data-mov='gota'] { --mov: gota; }
+.icono-mov[data-mov='sacudir'] { --mov: sacudir; }
+.icono-mov[data-mov='latido'] { --mov: latido; }
+.icono-mov[data-mov='voltear'] { --mov: voltear; }
+.icono-mov[data-mov='giro'] { --mov: giro; }
+.icono-mov[data-mov='aparecer'] { --mov: latido; }
+.icono-mov[data-mov='empujar'] { --mov: empujar; }
+.icono-mov[data-mov='atras'] { --mov: atras; }
+.icono-mov[data-mov='girar90'] { --mov: girar90; }
+
+@keyframes ola {
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-1px); }
+}
+@keyframes gota {
+  0% { transform: translateY(-6px); }
+  45% { transform: translateY(0); }
+  70% { transform: translateY(-2px); }
+}
+@keyframes sacudir {
+  20% { transform: rotate(-14deg); }
+  45% { transform: rotate(12deg); }
+  70% { transform: rotate(-6deg); }
+}
+@keyframes latido {
+  35% { transform: scale(1.22); }
+  65% { transform: scale(0.94); }
+}
+@keyframes voltear {
+  to { transform: rotate(180deg); }
+}
+@keyframes giro {
+  to { transform: rotate(360deg); }
+}
+@keyframes empujar {
+  50% { transform: translateX(4px); }
+}
+@keyframes atras {
+  50% { transform: translateX(-4px); }
+}
+@keyframes girar90 {
+  to { transform: rotate(90deg); }
+}

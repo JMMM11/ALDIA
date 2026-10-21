@@ -1,6 +1,7 @@
 import { useId, useMemo, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
-import { Plus } from '@phosphor-icons/react';
+import { PlusLg } from 'react-bootstrap-icons';
+import Icono from '../components/ui/Icono.jsx';
 import { useDatos } from '../context/DatosContext.jsx';
 import { useReporte } from '../context/ReporteContext.jsx';
 import { useAhora } from '../hooks/useAhora.js';
@@ -33,7 +34,7 @@ function Rejilla({ alertas, onAbrir, ahora }) {
 }
 
 export default function Alertas() {
-  const { alertas, cargando, error, modo } = useDatos();
+  const { alertas, cargando, error, modo, conEjemplos } = useDatos();
   const { abrirReporte } = useReporte();
   const ahora = useAhora();
   const idTitulo = useId();
@@ -62,15 +63,16 @@ export default function Alertas() {
         intro="Lo que tus vecinos están viendo ahora. Confirma lo que también ves y marca lo que es falso."
       >
         <button type="button" className="btn btn-accion" onClick={() => abrirReporte()}>
-          <Plus weight="bold" aria-hidden="true" />
+          <Icono de={PlusLg} mov="girar90" entrada={false} />
           Reportar algo nuevo
         </button>
       </CabeceraPagina>
 
       <div className={`contenedor ${css.cuerpo}`}>
-        {modo === 'demo' && (
+        {conEjemplos && (
           <p className={css.aviso}>
-            Modo demostración: estas alertas son ejemplos. Puedes votar para ver cómo cambia el semáforo; nada se guarda.
+            {modo === 'demo' ? 'Modo demostración: estas alertas son ejemplos.' : 'Vista previa: las alertas marcadas "Ejemplo" son ficticias y se muestran junto a las reales.'}{' '}
+            Vota en un ejemplo para ver cómo cambia el semáforo; ese voto no se guarda.
           </p>
         )}
         {error && (

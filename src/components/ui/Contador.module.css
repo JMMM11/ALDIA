@@ -1,0 +1,24 @@
+.cifras {
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+/* Ventana de una cifra: se ve un dígito; los bordes se desvanecen al rodar */
+.ventana {
+  display: inline-block;
+  height: 1.1em;
+  overflow: hidden;
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+
+.tira {
+  display: flex;
+  flex-direction: column;
+}
+
+.tira > span {
+  height: 1.1em;
+  line-height: 1.1;
+  text-align: center;
+}

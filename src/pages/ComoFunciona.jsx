@@ -1,4 +1,5 @@
-import { Fingerprint, Prohibit, ThumbsDown, Timer } from '@phosphor-icons/react';
+import { Fingerprint, HandThumbsDown, SlashCircle, Stopwatch } from 'react-bootstrap-icons';
+import Icono from '../components/ui/Icono.jsx';
 import { NIVELES, REGLAS } from '../data/semaforo.js';
 import { SITIO } from '../data/sitio.js';
 import { ICONO_NIVEL } from '../components/iconos.js';
@@ -8,7 +9,12 @@ import EspacioCanva from '../components/ui/EspacioCanva.jsx';
 import { Escalonado, ItemEscalonado } from '../components/ui/Escalonado.jsx';
 import css from './ComoFunciona.module.css';
 
-const ICONO_REGLA = { 'un-voto': Fingerprint, propio: Prohibit, falso: ThumbsDown, caduca: Timer };
+const ICONO_REGLA = {
+  'un-voto': { de: Fingerprint, mov: 'latido' },
+  propio: { de: SlashCircle, mov: 'sacudir' },
+  falso: { de: HandThumbsDown, mov: 'sacudir' },
+  caduca: { de: Stopwatch, mov: 'sacudir' },
+};
 
 export default function ComoFunciona() {
   return (
@@ -27,14 +33,14 @@ export default function ComoFunciona() {
           items={NIVELES}
           etiquetas={NIVELES.map((n) => n.nombre)}
           renderItem={(n) => {
-            const Icono = ICONO_NIVEL[n.id];
+            const icono = ICONO_NIVEL[n.id];
             return (
               <article className={css.nivel} data-nivel={n.nivel}>
                 <div className={css.visual}>
                   <span className={css.numero} aria-hidden="true">
                     {n.nivel}
                   </span>
-                  <Icono weight="duotone" aria-hidden="true" className={css.icono} />
+                  <Icono {...icono} className={css.icono} />
                 </div>
                 <div className={css.textoNivel}>
                   <p className={css.etiqueta}>Nivel {n.nivel} de 4</p>
@@ -64,10 +70,10 @@ export default function ComoFunciona() {
           <p className="intro">Se cumplen en la base de datos, no en tu teléfono: nadie puede saltárselas modificando la página.</p>
           <Escalonado as="ul" className={css.reglas}>
             {REGLAS.map((r) => {
-              const Icono = ICONO_REGLA[r.id];
+              const icono = ICONO_REGLA[r.id];
               return (
                 <ItemEscalonado as="li" key={r.id} className={css.regla}>
-                  <Icono weight="duotone" aria-hidden="true" />
+                  <Icono {...icono} />
                   <h3>{r.titulo}</h3>
                   <p>{r.texto}</p>
                 </ItemEscalonado>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Eye, Prohibit } from '@phosphor-icons/react';
+import { Eye, SlashCircle } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { useDatos } from '../../context/DatosContext.jsx';
 import css from './VotoBotones.module.css';
 
@@ -32,7 +33,7 @@ export default function VotoBotones({ alerta }) {
           disabled={Boolean(bloqueo) || enviando}
           onClick={() => enviar('confirma')}
         >
-          <Eye weight="bold" aria-hidden="true" />
+          <Icono de={Eye} mov="latido" />
           Yo también lo veo
         </button>
         <button
@@ -41,7 +42,7 @@ export default function VotoBotones({ alerta }) {
           disabled={Boolean(bloqueo) || enviando}
           onClick={() => enviar('falso')}
         >
-          <Prohibit weight="bold" aria-hidden="true" />
+          <Icono de={SlashCircle} mov="sacudir" />
           Esto es falso
         </button>
       </div>

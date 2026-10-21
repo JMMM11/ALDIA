@@ -81,3 +81,101 @@
     display: inline-flex;
   }
 }
+
+/* Menú desplegable "Reportes" */
+.grupo {
+  position: relative;
+}
+
+.grupo > .enlace {
+  gap: 6px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.flechita {
+  width: 12px;
+  height: 12px;
+  transition: rotate 0.2s ease;
+}
+
+.flechita[data-abierto='true'] {
+  rotate: 180deg;
+}
+
+/* El relleno superior une el botón con la caja para que el cursor no "caiga" */
+.panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% 0;
+  padding-top: 8px;
+  transform-origin: top center;
+}
+
+.caja {
+  width: 340px;
+  padding: var(--s-2);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-tarjeta);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-radius: var(--radio-chico);
+  color: inherit;
+  text-decoration: none;
+}
+
+.opcion:hover,
+.opcion:focus-visible,
+.opcion[aria-current='page'] {
+  background: var(--superficie-2);
+}
+
+.opcionIcono {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-chico);
+  background: var(--superficie-2);
+  color: var(--comunidad);
+}
+
+.opcionIcono svg {
+  width: 18px;
+  height: 18px;
+}
+
+.opcionNombre {
+  display: block;
+  font-weight: 600;
+}
+
+.opcionTexto {
+  display: block;
+  color: var(--texto-suave);
+  font-size: var(--t-sm);
+  line-height: 1.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flechita {
+    transition: none;
+  }
+}
+
+.opcion:is(:hover, :focus-visible, [aria-current='page']) .opcionIcono {
+  background: var(--superficie);
+}

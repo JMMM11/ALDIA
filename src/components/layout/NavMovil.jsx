@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { DotsThreeOutline, Plus } from '@phosphor-icons/react';
+import { PlusLg, ThreeDots } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { NAVEGACION } from '../../data/sitio.js';
 import { useReporte } from '../../context/ReporteContext.jsx';
 import { ICONO_NAV } from '../iconos.js';
@@ -14,14 +15,14 @@ const EN_MAS = NAVEGACION.filter((n) => ![...PRINCIPALES, ...DERECHA].includes(n
 const porRuta = (r) => NAVEGACION.find((n) => n.ruta === r);
 
 function Item({ item }) {
-  const Icono = ICONO_NAV[item.icono];
+  const icono = ICONO_NAV[item.icono];
   return (
     <li>
       <EnlaceNav ruta={item.ruta} className={css.item}>
         {(isActive) => (
           <>
             {isActive && <motion.span layoutId="movil-activo" className={css.indicador} transition={{ type: 'spring', stiffness: 460, damping: 34 }} />}
-            <Icono weight={isActive ? 'fill' : 'regular'} aria-hidden="true" />
+            <Icono de={isActive ? icono.lleno : icono.de} mov={icono.mov} entrada={false} />
             <span>{item.nombre}</span>
           </>
         )}
@@ -45,7 +46,7 @@ export default function NavMovil() {
           <li>
             <button type="button" className={css.reportar} onClick={() => abrirReporte()}>
               <span className={css.circulo}>
-                <Plus weight="bold" aria-hidden="true" />
+                <Icono de={PlusLg} mov="girar90" entrada={false} />
               </span>
               <span>Reportar</span>
             </button>
@@ -55,7 +56,7 @@ export default function NavMovil() {
           ))}
           <li>
             <button type="button" className={css.item} onClick={() => setMasAbierto(true)} aria-haspopup="dialog">
-              <DotsThreeOutline aria-hidden="true" />
+              <Icono de={ThreeDots} mov="latido" entrada={false} />
               <span>Más</span>
             </button>
           </li>
@@ -66,11 +67,11 @@ export default function NavMovil() {
         <h2 className={css.tituloMas}>Más secciones</h2>
         <ul className={css.listaMas}>
           {EN_MAS.map((n) => {
-            const Icono = ICONO_NAV[n.icono];
+            const icono = ICONO_NAV[n.icono];
             return (
               <li key={n.ruta}>
                 <EnlaceNav ruta={n.ruta} className={css.enlaceMas} onClick={() => setMasAbierto(false)}>
-                  <Icono weight="duotone" aria-hidden="true" />
+                  <Icono {...icono} />
                   {n.nombre}
                 </EnlaceNav>
               </li>

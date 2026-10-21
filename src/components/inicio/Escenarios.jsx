@@ -3,6 +3,7 @@ import { tipoPorId } from '../../data/catalogos.js';
 import { ICONO_TIPO } from '../iconos.js';
 import Carrusel from '../ui/Carrusel.jsx';
 import css from './Escenarios.module.css';
+import Icono from '../ui/Icono.jsx';
 
 export default function Escenarios() {
   return (
@@ -20,11 +21,11 @@ export default function Escenarios() {
           intervalo={8000}
           etiquetas={ESCENARIOS.map((e) => tipoPorId(e.tipo).nombre)}
           renderItem={(e) => {
-            const Icono = ICONO_TIPO[e.tipo];
+            const tipo = ICONO_TIPO[e.tipo];
             return (
               <figure className={css.escenario}>
                 <span className={css.icono}>
-                  <Icono weight="duotone" aria-hidden="true" />
+                  <Icono {...tipo} />
                 </span>
                 <blockquote className={css.cita}>
                   <p>“{e.texto}”</p>

@@ -74,7 +74,7 @@
   border: 1px solid var(--borde);
 }
 
-.punto > svg {
+.punto > :global(.icono-mov) svg {
   width: 32px;
   height: 32px;
   color: var(--comunidad);

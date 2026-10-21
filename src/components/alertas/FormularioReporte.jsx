@@ -1,7 +1,8 @@
 import { useId, useState } from 'react';
 import { Link } from 'wouter';
 import { motion } from 'motion/react';
-import { CheckCircle, LockKey } from '@phosphor-icons/react';
+import { CheckCircleFill, LockFill } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { LIMITE_DESCRIPCION, SECTORES, TIPOS } from '../../data/catalogos.js';
 import { validarReporte } from '../../lib/validacion.js';
 import { useDatos } from '../../context/DatosContext.jsx';
@@ -53,7 +54,7 @@ export default function FormularioReporte({ tipoInicial = '', idTitulo, onListo,
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 420, damping: 18 }}
         >
-          <CheckCircle weight="fill" aria-hidden="true" />
+          <Icono de={CheckCircleFill} mov="latido" />
         </motion.span>
         <Titulo id={idTitulo} className={css.titulo} tabIndex={-1}>
           {traslado ? 'Solicitud enviada' : 'Reporte enviado'}
@@ -126,7 +127,7 @@ export default function FormularioReporte({ tipoInicial = '', idTitulo, onListo,
         <legend className={css.etiqueta}>¿Qué está pasando?</legend>
         <div className={css.opcionesTipo}>
           {TIPOS.map((t, i) => {
-            const Icono = ICONO_TIPO[t.id];
+            const tipo = ICONO_TIPO[t.id];
             return (
               <label key={t.id} className={css.tipo}>
                 <input
@@ -137,7 +138,7 @@ export default function FormularioReporte({ tipoInicial = '', idTitulo, onListo,
                   checked={datos.tipo === t.id}
                   onChange={cambiar('tipo')}
                 />
-                <Icono weight="duotone" aria-hidden="true" className={css.iconoTipo} />
+                <Icono {...tipo} className={css.iconoTipo} />
                 <span className={css.nombreTipo}>{t.nombre}</span>
                 <span className={css.ayudaTipo}>{t.ayuda}</span>
               </label>
@@ -180,7 +181,7 @@ export default function FormularioReporte({ tipoInicial = '', idTitulo, onListo,
       </div>
 
       <p className={css.privacidad}>
-        <LockKey weight="bold" aria-hidden="true" />
+        <Icono de={LockFill} mov="sacudir" />
         Participas con una identidad anónima. No guardamos tu nombre ni tu teléfono.
       </p>
 

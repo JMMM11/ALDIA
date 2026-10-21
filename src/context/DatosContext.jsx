@@ -1,25 +1,31 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { configurado } from '../lib/supabase.js';
+import { SITIO } from '../data/sitio.js';
 import * as api from '../services/alertas.js';
 import { crearAlertasEjemplo, ESTADISTICAS_EJEMPLO } from '../data/alertasEjemplo.js';
 
 export const MODO = configurado ? 'en-vivo' : 'demo';
+// Sin base de datos, o antes del lanzamiento (SITIO.vistaPrevia), se muestran
+// alertas de ejemplo junto a las reales para ver todos los estados del semáforo.
+export const CON_EJEMPLOS = MODO === 'demo' || SITIO.vistaPrevia;
+const esEjemplo = (id) => String(id).startsWith('ej-');
 
 const DatosContext = createContext(null);
 
-// shortcut: en modo demostración el nivel se recalcula aquí solo para mostrar la
-// animación; en vivo lo calcula la vista public.alertas y este código no corre.
+// shortcut: en las alertas de ejemplo el nivel se recalcula aquí solo para
+// mostrar la animación; el de las reales lo calcula la vista public.alertas.
 function nivelDemo(a) {
   if (a.fuente) return 4;
-  const base = a.confirmaciones >= 3 ? 3 : a.confirmaciones >= 2 ? 2 : 1;
+  const base = a.confirmaciones >= 3 || a.validada ? 3 : a.confirmaciones >= 2 ? 2 : 1;
   return a.falsos > a.confirmaciones ? Math.max(base - 1, 1) : base;
 }
 
 export function DatosProvider({ children }) {
   const enVivo = MODO === 'en-vivo';
-  const [alertas, setAlertas] = useState(() => (enVivo ? [] : crearAlertasEjemplo()));
+  const [alertas, setAlertas] = useState([]);
+  const [ejemplos, setEjemplos] = useState(() => (CON_EJEMPLOS ? crearAlertasEjemplo() : []));
   const [misVotos, setMisVotos] = useState({});
-  const [estadisticas, setEstadisticas] = useState(enVivo ? null : ESTADISTICAS_EJEMPLO);
+  const [estadisticas, setEstadisticas] = useState(null);
   const [cargando, setCargando] = useState(enVivo);
   const [error, setError] = useState(null);
 
@@ -59,9 +65,9 @@ export function DatosProvider({ children }) {
 
   const votar = useCallback(
     async (id, voto) => {
-      if (!enVivo) {
+      if (esEjemplo(id)) {
         setMisVotos((v) => ({ ...v, [id]: voto }));
-        setAlertas((lista) =>
+        setEjemplos((lista) =>
           lista.map((a) => {
             if (a.id !== id) return a;
             const nueva = {
@@ -102,7 +108,7 @@ export function DatosProvider({ children }) {
           esMio: true,
           ejemplo: true,
         };
-        setAlertas((lista) => [nueva, ...lista]);
+        setEjemplos((lista) => [nueva, ...lista]);
         return null;
       }
       try {
@@ -117,10 +123,27 @@ export function DatosProvider({ children }) {
     [enVivo, recargar],
   );
 
-  const valor = useMemo(
-    () => ({ modo: MODO, alertas, misVotos, estadisticas, cargando, error, votar, reportar, recargar }),
-    [alertas, misVotos, estadisticas, cargando, error, votar, reportar, recargar],
-  );
+  const valor = useMemo(() => {
+    const ej = CON_EJEMPLOS ? ESTADISTICAS_EJEMPLO : { alertasConfirmadas: 0, vecinos: 0 };
+    return {
+      modo: MODO,
+      conEjemplos: CON_EJEMPLOS,
+      alertas: [...alertas, ...ejemplos],
+      misVotos,
+      // En vista previa las cifras suman las de ejemplo; en vivo sin ejemplos son solo las reales.
+      estadisticas: estadisticas || !enVivo
+        ? {
+            alertasConfirmadas: (estadisticas?.alertasConfirmadas ?? 0) + ej.alertasConfirmadas,
+            vecinos: (estadisticas?.vecinos ?? 0) + ej.vecinos,
+          }
+        : null,
+      cargando,
+      error,
+      votar,
+      reportar,
+      recargar,
+    };
+  }, [enVivo, alertas, ejemplos, misVotos, estadisticas, cargando, error, votar, reportar, recargar]);
 
   return <DatosContext.Provider value={valor}>{children}</DatosContext.Provider>;
 }

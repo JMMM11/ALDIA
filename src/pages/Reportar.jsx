@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import { useSearchParams } from 'wouter';
-import { Siren } from '@phosphor-icons/react';
+import { ExclamationTriangleFill } from 'react-bootstrap-icons';
+import Icono from '../components/ui/Icono.jsx';
 import { SITIO } from '../data/sitio.js';
 import { TIPOS } from '../data/catalogos.js';
 import FormularioReporte from '../components/alertas/FormularioReporte.jsx';
@@ -18,7 +19,7 @@ export default function Reportar() {
       </div>
       <aside className={css.lateral} aria-label="Antes de reportar">
         <div className={css.emergencia}>
-          <Siren weight="duotone" aria-hidden="true" />
+          <Icono de={ExclamationTriangleFill} mov="sacudir" />
           <p>
             <strong>{SITIO.emergencia}</strong> ALDÍA sirve para avisar a tus vecinos, no reemplaza a SINAPROC ni a los bomberos.
           </p>

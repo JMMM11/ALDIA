@@ -1,5 +1,6 @@
 import { Link } from 'wouter';
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { FOTOS } from '../../data/fotos.js';
 import Foto from '../ui/Foto.jsx';
 import { Escalonado, ItemEscalonado } from '../ui/Escalonado.jsx';
@@ -45,7 +46,7 @@ export default function Servicios() {
                   </Link>
                 </h3>
                 <p>{s.texto}</p>
-                <ArrowRight aria-hidden="true" className={css.flecha} />
+                <Icono de={ArrowRight} mov="empujar" entrada={false} className={css.flecha} />
               </div>
             </ItemEscalonado>
           ))}

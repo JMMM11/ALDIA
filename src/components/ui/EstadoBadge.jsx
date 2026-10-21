@@ -3,13 +3,14 @@ import { AnimatePresence, motion } from 'motion/react';
 import { nivelPorNumero } from '../../data/semaforo.js';
 import { ICONO_NIVEL } from '../iconos.js';
 import css from './EstadoBadge.module.css';
+import Icono from './Icono.jsx';
 
 // Insignia del semáforo: siempre ícono + texto, nunca solo color.
 // Cuando el nivel sube (llega una confirmación) el contenido cambia con un
 // pequeño salto y un pulso, para que se note sin interrumpir la lectura.
 export default function EstadoBadge({ nivel, grande = false }) {
   const info = nivelPorNumero(nivel);
-  const Icono = ICONO_NIVEL[info.id];
+  const icono = ICONO_NIVEL[info.id];
   const anterior = useRef(nivel);
   const subio = nivel > anterior.current;
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function EstadoBadge({ nivel, grande = false }) {
           exit={{ opacity: 0, y: -8, scale: 0.9 }}
           transition={{ type: 'spring', stiffness: 420, damping: 28 }}
         >
-          <Icono weight="bold" aria-hidden="true" className={css.icono} />
+          <Icono {...icono} className={css.icono} />
           {grande ? info.nombre : info.corto}
         </motion.span>
       </AnimatePresence>

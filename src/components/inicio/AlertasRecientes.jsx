@@ -1,5 +1,6 @@
 import { Link } from 'wouter';
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import { useDatos } from '../../context/DatosContext.jsx';
 import { nombreSector, tipoPorId } from '../../data/catalogos.js';
 import { haceCuanto } from '../../lib/tiempo.js';
@@ -10,7 +11,7 @@ import { Escalonado, ItemEscalonado } from '../ui/Escalonado.jsx';
 import css from './AlertasRecientes.module.css';
 
 export default function AlertasRecientes() {
-  const { alertas, modo } = useDatos();
+  const { alertas, conEjemplos } = useDatos();
   const ahora = useAhora();
   // Solo lo que ya se difunde (nivel 2 o más); los traslados nunca son públicos.
   const recientes = alertas.filter((a) => a.nivel >= 2 && a.tipo !== 'traslado').slice(0, 3);
@@ -24,7 +25,7 @@ export default function AlertasRecientes() {
           </h2>
           <Link to="/alertas" className="enlace">
             Ver todas las alertas
-            <ArrowRight aria-hidden="true" />
+            <Icono de={ArrowRight} mov="empujar" entrada={false} />
           </Link>
         </div>
 
@@ -33,10 +34,10 @@ export default function AlertasRecientes() {
         ) : (
           <Escalonado as="ol" className={css.lista}>
             {recientes.map((a) => {
-              const Icono = ICONO_TIPO[a.tipo];
+              const tipo = ICONO_TIPO[a.tipo];
               return (
                 <ItemEscalonado as="li" key={a.id} className={css.fila}>
-                  <Icono weight="duotone" aria-hidden="true" className={css.icono} />
+                  <Icono {...tipo} className={css.icono} />
                   <div className={css.cuerpo}>
                     <p className={css.titulo}>
                       {tipoPorId(a.tipo).nombre} en {nombreSector(a.sector)}
@@ -52,7 +53,7 @@ export default function AlertasRecientes() {
             })}
           </Escalonado>
         )}
-        {modo === 'demo' && <p className={css.nota}>Mostrando alertas de ejemplo hasta conectar la base de datos.</p>}
+        {conEjemplos && <p className={css.nota}>Vista previa: las alertas marcadas "Ejemplo" son ficticias.</p>}
       </div>
     </section>
   );

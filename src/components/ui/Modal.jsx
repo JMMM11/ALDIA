@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { X } from '@phosphor-icons/react';
+import { XLg } from 'react-bootstrap-icons';
+import Icono from './Icono.jsx';
 import css from './Modal.module.css';
 
 // Diálogo con fondo desenfocado. Mientras está abierto, el resto de la página
@@ -57,7 +58,7 @@ export default function Modal({ abierto, onCerrar, titulo, idTitulo, variante = 
             transition={{ type: 'spring', stiffness: 380, damping: 34 }}
           >
             <button type="button" className={css.cerrar} onClick={onCerrar} aria-label="Cerrar">
-              <X weight="bold" aria-hidden="true" />
+              <Icono de={XLg} mov="girar90" entrada={false} />
             </button>
             {children}
           </motion.div>

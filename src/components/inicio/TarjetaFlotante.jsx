@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react';
-import { CheckCircle, Waves } from '@phosphor-icons/react';
+import { CheckCircleFill, Water } from 'react-bootstrap-icons';
+import Icono from '../ui/Icono.jsx';
 import EstadoBadge from '../ui/EstadoBadge.jsx';
 import css from './TarjetaFlotante.module.css';
 
@@ -38,7 +39,7 @@ export default function TarjetaFlotante({ className }) {
     >
       <div className={css.cabecera}>
         <span className={css.tipo}>
-          <Waves weight="duotone" />
+          <Icono de={Water} mov="ola" />
           Crecida
         </span>
         <span className="ejemplo">Ejemplo</span>
@@ -59,7 +60,7 @@ export default function TarjetaFlotante({ className }) {
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: 'spring', stiffness: 500, damping: 20 }}
                   >
-                    <CheckCircle weight="fill" />
+                    <Icono de={CheckCircleFill} mov="latido" />
                   </motion.span>
                 )}
               </AnimatePresence>
