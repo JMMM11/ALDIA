@@ -5,17 +5,18 @@ import {
   BellFill,
   Book,
   BookFill,
+  CheckCircle,
+  Clock,
   ConeStriped,
   Droplet,
   DropletFill,
   DropletHalf,
   Hospital,
   HospitalFill,
-  HourglassSplit,
   HouseDoor,
   HouseDoorFill,
-  Megaphone,
-  PatchCheckFill,
+  PatchCheck,
+  PlusSquare,
   People,
   PeopleFill,
   QuestionCircle,
@@ -27,14 +28,15 @@ export const ICONO_TIPO = {
   crecida: { de: Water, mov: 'ola' },
   'corte-agua': { de: DropletHalf, mov: 'gota' },
   'via-cerrada': { de: ConeStriped, mov: 'sacudir' },
-  traslado: { de: Hospital, mov: 'latido' },
+  traslado: { de: PlusSquare, mov: 'latido' },
 };
 
 export const ICONO_NIVEL = {
-  reportado: { de: Megaphone, mov: 'sacudir' },
-  'en-confirmacion': { de: HourglassSplit, mov: 'voltear' },
-  confirmado: { de: PeopleFill, mov: 'latido' },
-  oficial: { de: PatchCheckFill, mov: 'giro' },
+  // Íconos del semáforo según el manual de marca.
+  reportado: { de: Clock, mov: 'sacudir' },
+  'en-confirmacion': { de: People, mov: 'latido' },
+  confirmado: { de: CheckCircle, mov: 'latido' },
+  oficial: { de: PatchCheck, mov: 'giro' },
 };
 
 // lleno: la versión rellena marca la página actual en la barra del teléfono.

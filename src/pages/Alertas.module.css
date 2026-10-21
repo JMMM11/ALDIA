@@ -14,8 +14,8 @@
 .error {
   padding: var(--s-3) var(--s-4);
   border-radius: var(--radio-chico);
-  background: var(--s4-bg);
-  color: var(--s4-fg);
+  background: var(--error-bg);
+  color: var(--error);
   font-weight: 550;
 }
 

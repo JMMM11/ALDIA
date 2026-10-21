@@ -1,13 +1,15 @@
 /*
-  Tokens de FLUYA.
-  Dirección: "hora azul". Lienzo azul profundo, superficies un paso más claras,
-  sin sombras, controles en forma de píldora. Reglas de rol:
-  - --accion: solo la acción principal de cada vista (Reportar, Enviar).
-  - --comunidad (turquesa): señales de la comunidad (confirmaciones) y anillo de foco.
+  Tokens de FLUYA, según el manual de marca (octubre 2026).
+  Proporción por pantalla: 60% blanco hueso, 25% verde profundo, 10% salvia, 5% coral.
+  Reglas de rol:
+  - --accion (Soft Clay, coral): solo la acción principal (Reportar, Enviar).
+  - --comunidad (Deep River, verde profundo): identidad, botones secundarios,
+    señales de la comunidad (confirmaciones) y anillo de foco.
   - Colores del semáforo: solo dentro de insignias y pasos del semáforo.
+  - Coral y salvia no sirven como texto sobre hueso; texto coral: --error (Clay Deep).
 */
 :root {
-  --font-titulo: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-titulo: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
   --font-texto: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 
   /* Escala fluida; el texto base nunca baja de 16 px */
@@ -49,27 +51,32 @@
 
   /* Solo tema claro */
   color-scheme: light;
-  --bg: #eef2f7;
-  --superficie: #ffffff;
-  --superficie-2: #e4eaf2;
-  --texto: #0d1a2b;
-  --texto-suave: #44546a;
-  --borde: #d2dae5;
-  --borde-fuerte: #8e9cb0;
-  --accion: #1f4fd1;
-  --accion-hover: #1a44b8;
-  --accion-texto: #ffffff;
-  --comunidad: #0b766f;
-  --comunidad-suave: #d3f1ec;
-  --comunidad-sobre: #ffffff;
-  --velo: rgb(13 26 43 / 0.45);
+  --bg: #f5f1e8; /* Bone White */
+  --superficie: #fbf9f4;
+  --superficie-2: #ece6da;
+  --texto: #26312e; /* Ink */
+  --texto-suave: #5a635f;
+  --borde: #e2dbcc;
+  --borde-fuerte: #7a8781;
+  --accion: #d9785b; /* Soft Clay */
+  --accion-hover: #e3896e;
+  --accion-texto: #1b2321; /* Ink más oscuro: 5:1 sobre coral */
+  --comunidad: #174e4a; /* Deep River */
+  --comunidad-suave: #d9e6df;
+  --comunidad-sobre: #f5f1e8;
+  --salvia: #8ca99a; /* River Sage: solo superficies y detalles, nunca texto */
+  --error: #a84e34; /* Clay Deep */
+  --error-bg: #f6e1d8;
+  --velo: rgb(15 47 44 / 0.5);
 
-  --s1-fg: #4b5565;
-  --s1-bg: #e6eaf0;
-  --s2-fg: #7a5600;
-  --s2-bg: #fdf0c4;
-  --s3-fg: #9a4300;
-  --s3-bg: #fde2cc;
-  --s4-fg: #b42318;
-  --s4-bg: #fde3e1;
+  /* Semáforo de confianza */
+  --s1-fg: #4f5753; /* Reportado */
+  --s1-bg: #e6e1d6;
+  --s2-fg: #6b4e0a; /* En confirmación */
+  --s2-bg: #f5e2ae;
+  --s3-fg: #174e4a; /* Confirmado */
+  --s3-bg: #d9e6df;
+  --s4-fg: #174e4a; /* Oficial: insignia rellena de verde profundo */
+  --s4-bg: #174e4a;
+  --s4-sobre: #f5f1e8;
 }

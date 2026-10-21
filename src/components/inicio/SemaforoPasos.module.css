@@ -81,7 +81,7 @@
 .paso[data-nivel='1'] { --fg: var(--s1-fg); --bg-nivel: var(--s1-bg); }
 .paso[data-nivel='2'] { --fg: var(--s2-fg); --bg-nivel: var(--s2-bg); }
 .paso[data-nivel='3'] { --fg: var(--s3-fg); --bg-nivel: var(--s3-bg); }
-.paso[data-nivel='4'] { --fg: var(--s4-fg); --bg-nivel: var(--s4-bg); }
+.paso[data-nivel='4'] { --fg: var(--s4-sobre); --bg-nivel: var(--s4-bg); }
 
 .nombre {
   font-size: var(--t-lg);

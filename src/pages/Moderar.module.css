@@ -40,7 +40,7 @@
 }
 
 .error {
-  color: var(--s4-fg);
+  color: var(--error);
   font-weight: 550;
 }
 
@@ -106,6 +106,6 @@
 
 .cerrar {
   justify-self: start;
-  color: var(--s4-fg);
+  color: var(--error);
   border-color: currentColor;
 }

@@ -12,10 +12,11 @@
 
 /* Sobre la foto del inicio: transparente con texto blanco */
 .sobreFoto {
-  color: #fff;
+  color: #f5f1e8;
   border-bottom-color: transparent;
-  --texto-nav: #fff;
-  --indicador: rgb(255 255 255 / 0.16);
+  --texto-nav: #f5f1e8;
+  --indicador: rgb(245 241 232 / 0.16);
+  --logo: var(--comunidad-sobre);
 }
 
 .fila {

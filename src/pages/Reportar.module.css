@@ -35,7 +35,7 @@
   gap: var(--s-3);
   padding: var(--s-4);
   border-radius: var(--radio-tarjeta);
-  background: var(--s4-bg);
+  background: var(--error-bg);
   color: var(--texto);
 }
 
@@ -43,7 +43,7 @@
   flex: none;
   width: 28px;
   height: 28px;
-  color: var(--s4-fg);
+  color: var(--error);
 }
 
 .titulo {

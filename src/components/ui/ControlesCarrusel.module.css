@@ -8,9 +8,9 @@
 }
 
 .sobreFoto {
-  --c: #fff;
-  --c-borde: rgb(255 255 255 / 0.55);
-  --c-punto: rgb(255 255 255 / 0.5);
+  --c: #f5f1e8;
+  --c-borde: rgb(245 241 232 / 0.55);
+  --c-punto: rgb(245 241 232 / 0.5);
 }
 
 .boton {

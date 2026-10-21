@@ -5,8 +5,8 @@
   min-height: calc(100svh - var(--alto-nav-movil));
   overflow: hidden;
   isolation: isolate;
-  background: #0c111b;
-  color: #fff;
+  background: #0f2f2c;
+  color: #f5f1e8;
 }
 
 @media (min-width: 1024px) {
@@ -47,8 +47,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgb(8 12 20 / 0.6) 0%, rgb(8 12 20 / 0.1) 30%, rgb(8 12 20 / 0.55) 62%, rgb(8 12 20 / 0.92) 100%),
-    linear-gradient(90deg, rgb(8 12 20 / 0.45) 0%, transparent 60%);
+    linear-gradient(180deg, rgb(9 32 30 / 0.6) 0%, rgb(9 32 30 / 0.1) 30%, rgb(9 32 30 / 0.55) 62%, rgb(9 32 30 / 0.92) 100%),
+    linear-gradient(90deg, rgb(9 32 30 / 0.45) 0%, transparent 60%);
 }
 
 .contenido {
@@ -105,7 +105,7 @@
 .mensaje {
   grid-area: 1 / 1;
   max-width: 44ch;
-  color: rgb(255 255 255 / 0.9);
+  color: rgb(245 241 232 / 0.9);
   font-size: var(--t-lg);
 }
 

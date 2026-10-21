@@ -34,8 +34,12 @@
   --bg-nivel: var(--s3-bg);
 }
 .badge[data-nivel='4'] {
-  --fg: var(--s4-fg);
+  --fg: var(--s4-sobre);
   --bg-nivel: var(--s4-bg);
+}
+
+.badge[data-nivel='4'] .pulso {
+  border-color: var(--s4-bg);
 }
 
 .contenido {

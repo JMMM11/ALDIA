@@ -1,7 +1,13 @@
+/* Pie en verde profundo con el patrón de corrientes del manual de marca.
+   Los tokens se redefinen aquí para que todo lo de adentro quede legible. */
 .footer {
+  --texto: #f5f1e8;
+  --texto-suave: rgb(245 241 232 / 0.78);
+  --borde: rgb(245 241 232 / 0.18);
+  --comunidad: var(--salvia); /* anillo de foco visible sobre el verde */
+  --logo: #f5f1e8;
   padding-block: var(--s-8) var(--s-6);
-  border-top: 1px solid var(--borde);
-  background: var(--superficie);
+  background: #174e4a url('../../assets/marca/patron-corriente.svg') center / cover no-repeat;
   font-size: var(--t-sm);
   color: var(--texto-suave);
 }

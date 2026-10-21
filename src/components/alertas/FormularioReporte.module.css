@@ -145,11 +145,11 @@
 }
 
 .textarea[aria-invalid='true'] {
-  border-color: var(--s4-fg);
+  border-color: var(--error);
 }
 
 .error {
-  color: var(--s4-fg);
+  color: var(--error);
   font-weight: 550;
   font-size: var(--t-sm);
 }

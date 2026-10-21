@@ -8,19 +8,20 @@
       name="description"
       content="Alertas comunitarias para Villa del Campo, Valle Dorado, Nicolás Solano y Martín Sánchez (La Chorrera). Crecidas, cortes de agua, vías cerradas y traslados, confirmados por los vecinos."
     />
-    <meta name="theme-color" content="#eef2f7" />
+    <meta name="theme-color" content="#f5f1e8" />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
     <!-- Fuentes (licencia OFL), solo el subconjunto latino: cubre todo el español.
          Se precargan para que la vista previa del hero ya se vea con ellas. -->
-    <link rel="preload" as="font" type="font/woff2" href="%BASE_URL%fuentes/plus-jakarta-sans-latin-wght-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="%BASE_URL%fuentes/manrope-latin-wght-normal.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="%BASE_URL%fuentes/inter-latin-wght-normal.woff2" crossorigin />
     <style>
       @font-face {
-        font-family: 'Plus Jakarta Sans Variable';
+        font-family: 'Manrope Variable';
         font-style: normal;
         font-display: swap;
         font-weight: 200 800;
-        src: url('%BASE_URL%fuentes/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations');
+        src: url('%BASE_URL%fuentes/manrope-latin-wght-normal.woff2') format('woff2-variations');
       }
       @font-face {
         font-family: 'Inter Variable';
@@ -36,14 +37,14 @@
          si cambias el hero, ajusta también esto. Al arrancar, el hero de React se
          dibuja encima y reutiliza esta misma foto como primera diapositiva. */
       body { margin: 0; -webkit-font-smoothing: antialiased; }
-      .hero-previo { position: absolute; top: 0; left: 0; right: 0; display: grid; align-items: end; overflow: hidden; min-height: calc(100svh - 68px); background: #0c111b; color: #fff; }
+      .hero-previo { position: absolute; top: 0; left: 0; right: 0; display: grid; align-items: end; overflow: hidden; min-height: calc(100svh - 68px); background: #0f2f2c; color: #f5f1e8; }
       .hero-previo picture { position: absolute; inset: 0; }
       .hero-previo img { width: 100%; height: 100%; object-fit: cover; }
       .hero-previo::after {
         content: ''; position: absolute; inset: 0;
         background:
-          linear-gradient(180deg, rgb(8 12 20 / 0.6) 0%, rgb(8 12 20 / 0.1) 30%, rgb(8 12 20 / 0.55) 62%, rgb(8 12 20 / 0.92) 100%),
-          linear-gradient(90deg, rgb(8 12 20 / 0.45) 0%, transparent 60%);
+          linear-gradient(180deg, rgb(9 32 30 / 0.6) 0%, rgb(9 32 30 / 0.1) 30%, rgb(9 32 30 / 0.55) 62%, rgb(9 32 30 / 0.92) 100%),
+          linear-gradient(90deg, rgb(9 32 30 / 0.45) 0%, transparent 60%);
       }
       .hp-contenido {
         position: relative; z-index: 1; display: grid;
@@ -53,11 +54,11 @@
       .hp-texto { display: grid; gap: 1rem; justify-items: start; }
       .hp-titulo {
         margin: 0; max-width: 16ch; letter-spacing: -0.03em; text-wrap: balance;
-        font: 700 clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem) / 1.04 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+        font: 700 clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem) / 1.04 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
       }
       .hp-mensaje {
         --t: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
-        margin: 0; max-width: 44ch; min-height: calc(var(--t) * 1.55 * 3); color: rgb(255 255 255 / 0.9);
+        margin: 0; max-width: 44ch; min-height: calc(var(--t) * 1.55 * 3); color: rgb(245 241 232 / 0.9);
         font: 400 var(--t) / 1.55 'Inter Variable', ui-sans-serif, system-ui, sans-serif; text-wrap: pretty;
       }
       .hp-ctas { height: 48px; }

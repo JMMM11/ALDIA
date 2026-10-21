@@ -6,7 +6,7 @@
   max-width: 380px;
   justify-self: end;
   padding: var(--s-5);
-  border: 1px solid rgb(255 255 255 / 0.22);
+  border: 1px solid rgb(245 241 232 / 0.22);
   border-radius: 18px;
   background: color-mix(in srgb, var(--superficie) 84%, transparent);
   backdrop-filter: blur(18px) saturate(140%);

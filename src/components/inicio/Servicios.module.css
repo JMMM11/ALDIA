@@ -21,8 +21,8 @@
   min-height: 260px;
   overflow: hidden;
   border-radius: var(--radio-tarjeta);
-  background: #0c111b;
-  color: #fff;
+  background: #0f2f2c;
+  color: #f5f1e8;
   isolation: isolate;
 }
 
@@ -46,7 +46,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, transparent 25%, rgb(8 12 20 / 0.88) 100%);
+  background: linear-gradient(180deg, transparent 25%, rgb(9 32 30 / 0.88) 100%);
 }
 
 @media (hover: hover) {
@@ -66,7 +66,7 @@
 }
 
 .texto p {
-  color: rgb(255 255 255 / 0.86);
+  color: rgb(245 241 232 / 0.86);
 }
 
 .titulo {
