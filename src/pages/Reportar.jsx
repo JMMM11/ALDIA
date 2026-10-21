@@ -21,7 +21,7 @@ export default function Reportar() {
         <div className={css.emergencia}>
           <Icono de={ExclamationTriangleFill} mov="sacudir" />
           <p>
-            <strong>{SITIO.emergencia}</strong> ALDÍA sirve para avisar a tus vecinos, no reemplaza a SINAPROC ni a los bomberos.
+            <strong>{SITIO.emergencia}</strong> FLUYA sirve para avisar a tus vecinos, no reemplaza a SINAPROC ni a los bomberos.
           </p>
         </div>
         <h2 className={css.titulo}>Un buen reporte</h2>

@@ -1,9 +1,9 @@
 export const SITIO = {
-  nombre: 'ALDÍA',
+  nombre: 'FLUYA',
   eslogan: 'Tu comunidad, informada a tiempo',
   ideaClave:
     'La información es confiable porque la comunidad la construye en conjunto, no porque lo diga una sola persona.',
-  aviso: 'ALDÍA no sustituye a SINAPROC, al IDAAN ni a los servicios de emergencia. Los complementa.',
+  aviso: 'FLUYA no sustituye a SINAPROC, al IDAAN ni a los servicios de emergencia. Los complementa.',
   emergencia: 'En una emergencia, llama al 911.',
   // Antes del lanzamiento: mezcla alertas y cifras de ejemplo (marcadas
   // "Ejemplo") con las reales para ver todos los estados. Al lanzar, false.

@@ -1,4 +1,4 @@
-// Prueba las migraciones de ALDÍA en Postgres real (PGlite) imitando el entorno de
+// Prueba las migraciones de FLUYA en Postgres real (PGlite) imitando el entorno de
 // Supabase: esquema auth, roles anon/authenticated y sus permisos por defecto.
 // Ejecutar con: npm run test:db
 import { PGlite } from '@electric-sql/pglite';

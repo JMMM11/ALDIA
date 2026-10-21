@@ -36,7 +36,7 @@ export const ESCENARIOS = [
   {
     id: 'audio',
     tipo: 'corte-agua',
-    texto: 'Me llegó un audio diciendo que el corte duraba tres días. En ALDÍA vi el aviso oficial: era solo hasta la noche.',
+    texto: 'Me llegó un audio diciendo que el corte duraba tres días. En FLUYA vi el aviso oficial: era solo hasta la noche.',
     quien: 'Vecino de Villa del Campo',
   },
   {

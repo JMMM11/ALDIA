@@ -25,7 +25,7 @@ export default function IdeaClave() {
       <div className={`contenedor ${css.rejilla}`}>
         <div>
           <h2 id="idea-clave" className="visualmente-oculto">
-            La idea clave de ALDÍA
+            La idea clave de FLUYA
           </h2>
           <p ref={ref} className={css.frase}>
             {reducir

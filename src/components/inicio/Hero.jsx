@@ -82,7 +82,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className={`${css.hero} ${previo ? css.sobrePrevio : ''}`} aria-roledescription="carrusel" aria-label="Presentación de ALDÍA" {...c.raiz}>
+    <section className={`${css.hero} ${previo ? css.sobrePrevio : ''}`} aria-roledescription="carrusel" aria-label="Presentación de FLUYA" {...c.raiz}>
       <div className={css.fondo} {...c.deslizar}>
         <AnimatePresence initial={false}>
           <motion.div

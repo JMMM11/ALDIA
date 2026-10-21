@@ -53,7 +53,7 @@ export const CONSEJOS_AGUA = [
 export const VERIFICAR = [
   { id: 'quien', pregunta: '¿Quién lo dice?', texto: 'Un audio sin nombre ni fecha no es una fuente.' },
   { id: 'cuando', pregunta: '¿Cuándo pasó?', texto: 'Las fotos de crecidas viejas vuelven a circular cada vez que llueve.' },
-  { id: 'otros', pregunta: '¿Alguien más lo confirma?', texto: 'Busca la alerta en ALDÍA y revisa su nivel en el semáforo.' },
+  { id: 'otros', pregunta: '¿Alguien más lo confirma?', texto: 'Busca la alerta en FLUYA y revisa su nivel en el semáforo.' },
   { id: 'oficial', pregunta: '¿Hay aviso oficial?', texto: 'Revisa las cuentas de SINAPROC, el IDAAN o el Municipio antes de reenviar.' },
 ];
 
@@ -61,7 +61,7 @@ export const DATOS_PERSONALES = [
   'No publiques tu número de teléfono ni tu dirección exacta.',
   'Evita fotos donde se vean placas, caras de niños o la fachada de tu casa.',
   'Nadie legítimo te pide el código de verificación de WhatsApp. No lo compartas.',
-  'ALDÍA no te pide nombre ni teléfono: participas con una identidad anónima.',
+  'FLUYA no te pide nombre ni teléfono: participas con una identidad anónima.',
 ];
 
 export const EQUIPO = [

@@ -10,7 +10,7 @@ export default function Nosotros() {
     <>
       <CabeceraPagina
         titulo="Nosotros"
-        intro="Somos estudiantes de la Universidad Tecnológica de Panamá. ALDÍA nació para mostrar cómo el trabajo en equipo y la tecnología pueden proteger a un barrio."
+        intro="Somos estudiantes de la Universidad Tecnológica de Panamá. FLUYA nació para mostrar cómo el trabajo en equipo y la tecnología pueden proteger a un barrio."
       />
 
       <section className="contenedor" aria-labelledby="equipo">
@@ -33,7 +33,7 @@ export default function Nosotros() {
               ))}
             </Escalonado>
           </div>
-          <EspacioCanva pieza="Logo de ALDÍA" responsable="Josh Amaya" proporcion="1 / 1" className={css.logo} />
+          <EspacioCanva pieza="Logo de FLUYA" responsable="Josh Amaya" proporcion="1 / 1" className={css.logo} />
         </div>
       </section>
 
@@ -43,7 +43,7 @@ export default function Nosotros() {
             Relación con las instituciones
           </h2>
           <p className="intro">
-            Es una propuesta: ALDÍA no tiene convenio con estas entidades ni habla en su nombre. Planteamos cómo podría complementarlas.
+            Es una propuesta: FLUYA no tiene convenio con estas entidades ni habla en su nombre. Planteamos cómo podría complementarlas.
           </p>
           <ul className={css.listaAliados}>
             {ALIADOS.map((a) => (

@@ -138,7 +138,7 @@ export default function Header({ sobreFoto }) {
   return (
     <header className={`${css.header} ${sobreFoto ? css.sobreFoto : ''}`}>
       <div className={`contenedor ${css.fila}`}>
-        <Link to="/" className={css.marca} aria-label="ALDÍA, ir al inicio">
+        <Link to="/" className={css.marca} aria-label="FLUYA, ir al inicio">
           <Logo />
         </Link>
 

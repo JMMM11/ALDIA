@@ -12,7 +12,7 @@ export default function Escenarios() {
         <h2 id="escenarios" className="titulo-seccion">
           Cómo se vive en el barrio
         </h2>
-        <p className="intro">Escenarios ficticios para mostrar cómo ayuda ALDÍA en situaciones reales del sector.</p>
+        <p className="intro">Escenarios ficticios para mostrar cómo ayuda FLUYA en situaciones reales del sector.</p>
 
         <Carrusel
           className={css.carrusel}
